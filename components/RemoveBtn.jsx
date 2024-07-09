@@ -1,6 +1,6 @@
 "use client"; //TORNAR COMPONENTE CLIENTE (P INTERAÇÃO COM O CLIENTE NA PAGINA E NÃO NO SERVIDOR) 
 
-import { HiOutlineTrash } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 
 export default function RemoveBtn({ id }) {
@@ -20,7 +20,7 @@ export default function RemoveBtn({ id }) {
 
     return (
     <button onClick={removeTopic} className="text-red-400">
-        <HiOutlineTrash size={24} />
+        <HiTrash size={24} />
     </button>
     );
 }

@@ -1,4 +1,4 @@
-import EditTopicForm from "@/components/EditTopicForm";
+import ViewTopicForm from "@/components/ViewTopicForm";
 
 const getTopicById = async(id) => {
     try {
@@ -16,11 +16,12 @@ const getTopicById = async(id) => {
     }
 };
 
-export default async function EditTopic({ params }) { //como é um dynamic router, ou seja, no final tem um /id(numero da id), recebe como parametro esse id.
+export default async function ViewTopic({ params }) { //como é um dynamic router, ou seja, no final tem um /id(numero da id), recebe como parametro esse id.
     const { id } = params;
     const {employee} = await getTopicById(id);
     const {
         name, 
+        cpf,
         phoneNumber,
         corporateEmail,
         department,
@@ -28,9 +29,10 @@ export default async function EditTopic({ params }) { //como é um dynamic route
         active
     } = employee;
 
-    return <EditTopicForm 
+    return <ViewTopicForm 
                 id={id} 
                 name={name} 
+                cpf={cpf}
                 phoneNumber={phoneNumber} 
                 corporateEmail={corporateEmail} 
                 department={department} 

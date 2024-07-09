@@ -1,0 +1,79 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+export default function ViewTopicForm({id, name, cpf, phoneNumber, corporateEmail, department, role, active}) {
+
+    const [newName, setNewName] = useState(name);
+    const [newCpf, setNewCpf] = useState(cpf);
+    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
+    const [newCorporateEmail, setNewCorporateEmail] = useState(corporateEmail);
+    const [newDepartment, setNewDepartment] = useState(department);
+    const [newRole, setNewRole] = useState(role);
+    const [newActive, setNewActive] = useState(active);
+
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({newName, newCpf, newPhoneNumber, newCorporateEmail, newDepartment, newRole, newActive}),
+            });
+
+            if(!res.ok) {
+                throw new Error("Erro ao editar tópico.");
+            }
+
+            
+            router.push("/");//"voltar um diretorio"
+            router.refresh();
+            
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    return (
+        <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
+            
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Nome do funcionário: </p>
+                <h2 className="text-lg">{newName}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">CPF: </p>
+                <h2 className="text-lg">{newCpf}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Número de Telefone: </p>
+                <h2 className="text-lg">{newPhoneNumber}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Email Corporativo: </p>
+                <h2 className="text-lg">{newCorporateEmail}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Departamento: </p>
+                <h2 className="text-lg">{newDepartment}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Cargo: </p>
+                <h2 className="text-lg">{newRole}</h2>
+            </div>
+            <div className="flex gap-2">
+                <p className="text-neutral-400 text-sm">Situação: </p>
+                <h2 className={active ? "text-lg text-green-300" : "text-lg"}>{active ? 'Ativo' : 'Inativo'}</h2>
+            </div>
+            <Link href="/" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
+        </div>
+    );
+}

@@ -3,10 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditTopicForm({id, title, description}) {
+export default function EditTopicForm({id, name, phoneNumber, corporateEmail, department, role, active}) {
 
-    const [newTitle, setNewTitle] = useState(title);
-    const [newDescription, setNewDescription] = useState(description);
+    const [newName, setNewName] = useState(name);
+    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
+    const [newCorporateEmail, setNewCorporateEmail] = useState(corporateEmail);
+    const [newDepartment, setNewDepartment] = useState(department);
+    const [newRole, setNewRole] = useState(role);
+    const [newActive, setNewActive] = useState(active);
 
     const router = useRouter();
 
@@ -19,7 +23,7 @@ export default function EditTopicForm({id, title, description}) {
                 headers: {
                     "Content-type": "application/json",
                 },
-                body: JSON.stringify({newTitle, newDescription}),
+                body: JSON.stringify({newName, newPhoneNumber, newCorporateEmail, newDepartment, newRole, newActive}),
             });
 
             if(!res.ok) {
@@ -37,26 +41,41 @@ export default function EditTopicForm({id, title, description}) {
     };
 
     return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200" >
         <input 
-            onChange={(e) => setNewTitle(e.target.value)}
-            value={newTitle}
-            className="border border-slate-500 px-8 py-2"
+            onChange={(e) => setNewName(e.target.value)}
+            value={newName}
             type = "text"
-            placeholder="Título"
+            placeholder="Nome"
         />
-
+        <input 
+            onChange={(e) => setNewPhoneNumber(e.target.value)}
+            value={newPhoneNumber}
+            type = "number"
+            placeholder="Número de Telefone"
+        />
         <input
-            onChange={(e) => setNewDescription(e.target.value)}
-            value={newDescription} 
-            className="border border-slate-500 px-8 py-2"
+            onChange={(e) => setNewCorporateEmail(e.target.value)}
+            value={newCorporateEmail} 
+            type = "email"
+            placeholder="Email Corporativo"
+        />
+        <input 
+            onChange={(e) => setNewDepartment(e.target.value)}
+            value={newDepartment}
             type = "text"
-            placeholder="Descrição"
+            placeholder="Departamento"
+        />
+        <input 
+            onChange={(e) => setNewRole(e.target.value)}
+            value={newRole}
+            type = "text"
+            placeholder="Cargo"
         />
 
-        <button type= "submit" className="bg-green-600 font-bold
-        text-white py-3 px-6 w-fit">
-            Confirmar edição de tópico
+        <button type= "submit" className="font-bold
+        text-white min-w-max">
+            Salvar
         </button>
 
     </form>

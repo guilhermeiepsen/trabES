@@ -1,23 +1,23 @@
 import connectMongoDB from "@/libs/mongodb";
-import Topic from "@/models/topic";
+import Employee from "@/models/employee";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { title, description } = await request.json();
+    const { name, cpf, phoneNumber, corporateEmail, department, role, active } = await request.json();
     await connectMongoDB();
-    await Topic.create({ title, description });
-    return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+    await Employee.create({ name, cpf, phoneNumber, corporateEmail, department, role, active });
+    return NextResponse.json({ message: "Employee Registered" }, { status: 201 });
 }
 
 export async function GET() {
     await connectMongoDB();
-    const topics = await Topic.find();
-    return NextResponse.json({topics});
+    const employees = await Employee.find();
+    return NextResponse.json({employees});
 }
 
 export async function DELETE(request) {
     const id = request.nextUrl.searchParams.get("id");
     await connectMongoDB();
-    await Topic.findByIdAndDelete(id);
-    return NextResponse.json({message: "Topic deleted"}, {status: 200});
+    await Employee.findByIdAndDelete(id);
+    return NextResponse.json({message: "Employee deleted"}, {status: 200});
 }
