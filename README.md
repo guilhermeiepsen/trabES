@@ -1,13 +1,13 @@
-# comandos para rodar a aplicação no windows:
-# primeiramente você precisa ter o node instalado na sua máquina (versão mais nova)
-# depois de instalar o node, precisa instalar o react e o next:
+## comandos para rodar a aplicação no windows:
+### primeiramente você precisa ter o node instalado na sua máquina (versão mais nova)
+### depois de instalar o node, precisa instalar o react e o next:
 $ npm init
 $ npm install next react react-dom
 
-# finalmente rodar a aplicação:
+### finalmente rodar a aplicação:
 npm run dev 
 
-# o projeto está conectado ao mongoDB (banco de dados) na minha conta (Guilherme). Caso algum errro ocorra ao tentar conectar com o mongoDB me falem q pode ser no meu database.
+### o projeto está conectado ao mongoDB (banco de dados) na minha conta (Guilherme). Caso algum errro ocorra ao tentar conectar com o mongoDB me falem q pode ser no meu database.
 # talvez eu tenha q gerar uma senha nova para cada acesso.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
