@@ -8,7 +8,7 @@ $ npm install next react react-dom
 npm run dev 
 
 ### o projeto está conectado ao mongoDB (banco de dados) na minha conta (Guilherme). Caso algum errro ocorra ao tentar conectar com o mongoDB me falem q pode ser no meu database.
-# talvez eu tenha q gerar uma senha nova para cada acesso.
+### talvez eu tenha q gerar uma senha nova para cada acesso.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
