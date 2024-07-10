@@ -1,13 +1,13 @@
-import EditTopicForm from "@/components/EditTopicForm";
+import EditEmployeeForm from "@/components/EditEmployeeForm";
 
-const getTopicById = async(id) => {
+const getEmployeeById = async(id) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+        const res = await fetch(`http://localhost:3000/api/employees/${id}`, {
             cache: "no-store",
         });
 
         if(!res.ok) {
-            throw new Error("Failed to fetch topic");
+            throw new Error("Failed to fetch employee");
         }
 
         return res.json();
@@ -16,9 +16,9 @@ const getTopicById = async(id) => {
     }
 };
 
-export default async function EditTopic({ params }) { //como é um dynamic router, ou seja, no final tem um /id(numero da id), recebe como parametro esse id.
+export default async function EditEmployee({ params }) { //como é um dynamic router, ou seja, no final tem um /id(numero da id), recebe como parametro esse id.
     const { id } = params;
-    const {employee} = await getTopicById(id);
+    const {employee} = await getEmployeeById(id);
     const {
         name, 
         phoneNumber,
@@ -28,7 +28,7 @@ export default async function EditTopic({ params }) { //como é um dynamic route
         active
     } = employee;
 
-    return <EditTopicForm 
+    return <EditEmployeeForm 
                 id={id} 
                 name={name} 
                 phoneNumber={phoneNumber} 

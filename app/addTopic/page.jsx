@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AddTopic() {
+export default function AddEmployee() {
     
     const [name, setName] = useState("");
+    const [age, setAge] = useState("");
     const [cpf, setCpf] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [corporateEmail, setCorporateEmail] = useState("");
     const [department, setDepartment] = useState("");
+    const [admissionDate, setAdmissionDate] = useState();
     const [role, setRole] = useState("");
     const [active, setActive] = useState(1);
     
@@ -25,14 +27,16 @@ export default function AddTopic() {
         try {
             const employee = {
                 name: name,
+                age: age,
                 cpf: cpf,
                 phoneNumber: phoneNumber,
                 corporateEmail: corporateEmail,
                 department: department,
+                admissionDate: admissionDate,
                 role: role,
                 active: active,
             };
-            const res = await fetch('http://localhost:3000/api/topics', {
+            const res = await fetch('http://localhost:3000/api/employees', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -45,7 +49,7 @@ export default function AddTopic() {
                 router.push("/");
                 router.refresh(); //dar um refresh para show up o topico criado
             } else {
-                throw new Error("Failed to create a topic");
+                throw new Error("Failed to create a employee");
             }
         } catch (error) {
             console.log(error);
@@ -59,6 +63,12 @@ export default function AddTopic() {
                     value={name}
                     type = "text"
                     placeholder="Nome"
+                />
+                <input
+                    onChange={(e) => setAge(e.target.value)}
+                    value={age}
+                    type = "text"
+                    placeholder="Idade"
                 />
                 <input
                     onChange={(e) => setCpf(e.target.value)}
@@ -83,6 +93,11 @@ export default function AddTopic() {
                     value={department}
                     type = "text"
                     placeholder="Departamento"
+                />
+                <input
+                    onChange={(e) => setAdmissionDate(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
+                    value={admissionDate}
+                    type = "date"
                 />
                 <input
                     onChange={(e) => setRole(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"

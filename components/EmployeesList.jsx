@@ -2,9 +2,9 @@ import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt, HiUser } from "react-icons/hi";
 
-const getTopics = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
+const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
   try {
-    const res = await fetch('http://localhost:3000/api/topics/', { //AQUI ESTÁ O ENDPOINT DA FUNÇAO GET.
+    const res = await fetch('http://localhost:3000/api/employees/', { //AQUI ESTÁ O ENDPOINT DA FUNÇAO GET.
       //NÃO PRECISA COLOCAR O MÉTODO "GET" POIS A FUNÇAO GET EH A UNICA FUNÇAO DO COMPONENTE QUE NÃO TEM PARÂMETRO. PORTANTO VAI PEGAR ELA POR DEFAULT QUANDO NÃO HÁ UM MÉTODO REQUERIDO.
       cache: "no-store", //COLOCAR ESSE PARAMETRO DE CACHE PARA QUE SEMPRE QUE O ENDPOINT SER VISITADO VAI PEGAR OS DADOS UPDATADOS. DO CONTRÁRIO, O NEXT PEGA SÓ O PRIMEIO DADO CARREGADO NO BANCO POIS COLOCA NA CACHE E PUXA DELA
     });
@@ -19,9 +19,9 @@ const getTopics = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUN
   }
 }
 
-export default async function TopicsList() {
+export default async function EmployeesList() {
     
-  const { employees } = await getTopics();
+  const { employees } = await getEmployees();
   //console.log(topics);
   
   return (

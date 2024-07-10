@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditTopicForm({id, name, phoneNumber, corporateEmail, department, role, active}) {
+export default function EditEmployeeForm({id, name, phoneNumber, corporateEmail, department, role, active}) {
 
     const [newName, setNewName] = useState(name);
     const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
@@ -18,7 +18,7 @@ export default function EditTopicForm({id, name, phoneNumber, corporateEmail, de
         e.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+            const res = await fetch(`http://localhost:3000/api/employees/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",

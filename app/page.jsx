@@ -1,6 +1,6 @@
-import TopicsList from "@/components/TopicsList";
+import EmployeesList from "@/components/EmployeesList";
 
 export default function Home() {
-  return <TopicsList />
+  return <EmployeesList />
 
 }

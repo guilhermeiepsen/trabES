@@ -3,10 +3,12 @@ import mongoose, { Schema } from "mongoose";
 const employeeSchema = new Schema(
   {
     name: String,
+    age: Number,
     cpf: Number,
     phoneNumber: Number,
     corporateEmail: String,
     department: String,
+    admissionDate: Date,
     role: String,
     active: Boolean,
   },
