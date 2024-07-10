@@ -10,7 +10,7 @@ export default function RemoveBtn({ id }) {
         const confirmed = confirm("Voce tem certeza que deseja remover o tópico?");
 
         if(confirmed) {
-            const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, { method: "DELETE" });
+            const res = await fetch(`http://localhost:3000/api/employees?id=${id}`, { method: "DELETE" });
             //PARA NÃO PRECISAR DAR UM REFRESH NA PAGINA APÓS DELETAR O TÓPICO FAÇA O REFRESH NO PROXIMO IF STATEMENT:
             if (res.ok) {
                 router.refresh();
