@@ -8,6 +8,11 @@ const userSchema = new Schema({
         trim: true,
         required: true,
         unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 

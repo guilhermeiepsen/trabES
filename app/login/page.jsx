@@ -9,17 +9,22 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:3000/api/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-        await response.json();
-        if (response.ok) {
-            router.push("/"); // Redireciona para a página inicial após login bem-sucedido
-        } else {
-            console.error('Login failed');
-            router.push('/login'); // Redireciona para a página de login ao falhar
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const result = await response.json();
+            console.log(result); // Log the response from the server
+            if (response.ok) {
+                router.push('/'); // Redirect to home page after successful login
+            } else {
+                console.error('Login failed:', result.message);
+                router.push('/login'); // Redirect to login page on failure
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
         }
     };
 
@@ -29,7 +34,7 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
                 type="text"
-                placeholder="Usuário"
+                placeholder="Username"
                 className="p-2 rounded-md"
                 required
             />
@@ -37,7 +42,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 type="password"
-                placeholder="Senha"
+                placeholder="Password"
                 className="p-2 rounded-md"
                 required
             />
@@ -45,7 +50,7 @@ const Login = () => {
                 Login
             </button>
             <a href="/register" className="hover:bg-neutral-800 font-bold text-white min-w-max text-center">
-                Registrar-se
+                Register
             </a>
         </form>
     );

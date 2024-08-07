@@ -21,9 +21,9 @@ const AddUser = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newUser),
             });
+            console.log(response);
             if (response.ok) {
                 router.push("/");
-                router.refresh(); //dar um refresh para show up o tópico criado
             } else {
                 throw new Error("Failed to create new user");
             }
