@@ -1,27 +1,22 @@
-import connectMongoDB from '@/libs/mongodb';
+// pages/api/auth/login.js
 import passport from '@/libs/passport';
-import session from '@/libs/session';
-import { NextResponse } from 'next/server';
-import express from 'express';
-import { json } from 'express';
+import { withSession } from '@/libs/session';
+import nextConnect from 'next-connect';
 
-const app = express();
-app.use(json());
-app.use(session);
+const handler = nextConnect();
 
-app.post('/api/auth/login', (req, res, next) => {
+handler.use(passport.initialize()).use(passport.session());
+
+handler.post((req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
-        if (err) return res.status(500).json({ message: err.message });
-        if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+        if (err) return next(err);
+        if (!user) return res.status(401).json({ message: 'Invalid username or password' });
 
         req.logIn(user, (err) => {
-            if (err) return res.status(500).json({ message: err.message });
+            if (err) return next(err);
             return res.status(200).json({ message: 'Logged in successfully' });
         });
     })(req, res, next);
 });
 
-export async function POST(request) {
-    await connectMongoDB();
-    return NextResponse.json({ message: 'Login handler' }, { status: 200 });
-}
+export default withSession(handler);

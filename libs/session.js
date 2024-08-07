@@ -1,12 +1,14 @@
-import session from 'express-session';
-import connectMongoDB from './mongodb'; // Certifique-se de que este arquivo está configurado corretamente
+// libs/session.js
+import { withIronSessionApiRoute } from "iron-session/next";
 
-const sessionMiddleware = session({
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === 'production' },
-    store: new (require('connect-mongo')).default({ mongooseConnection: connectMongoDB() })
-});
+const sessionOptions = {
+    secret: 'humanlink-secret',
+    cookieName: "humanlink_cookie",
+    cookieOptions: {
+        httpOnly: true,
+    },
+};
 
-export default sessionMiddleware;
+export function withSession(handler) {
+    return withIronSessionApiRoute(handler, sessionOptions);
+}
