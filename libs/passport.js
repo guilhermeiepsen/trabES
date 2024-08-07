@@ -1,3 +1,5 @@
+// libs/passport.js
+
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import User from '@/models/user';
@@ -6,7 +8,7 @@ passport.use(new LocalStrategy(
     { usernameField: 'username', passwordField: 'password' },
     async (username, password, done) => {
         try {
-            const user = await User.findByUsername(username);
+            const user = await User.findOne({username});
             if (!user) {
                 return done(null, false, { message: 'Incorrect username.' });
             }

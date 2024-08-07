@@ -1,3 +1,5 @@
+// pages/api/auth/login.js
+
 import connectMongoDB from '@/libs/mongodb';
 import passport from '@/libs/passport';
 import session from 'cookie-session';
@@ -6,35 +8,24 @@ import { NextResponse } from 'next/server';
 const sessionMiddleware = session({
     name: 'session',
     keys: [process.env.SESSION_SECRET],
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // 1  dia
 });
 
+export const middleware = [sessionMiddleware, passport.initialize(), passport.session()];
+
 export async function POST(req) {
-    const {username, password} = await req.json();
     await connectMongoDB();
+    const { username, password } = await req.json();
 
     return new Promise((resolve, reject) => {
-        sessionMiddleware(req, {}, async () => {
-            passport.authenticate('local', (err, user, info) => {
-                if (err) {
-                    console.error('Authentication error:', err);
-                    return reject(new NextResponse(JSON.stringify({ message: 'Authentication error' }), { status: 500 }));
-                }
-                if (!user) {
-                    console.warn('Invalid credentials:', info.message);
-                    return resolve(new NextResponse(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 }));
-                }
+        passport.authenticate('local', (err, user, info) => {
+            if (err) return reject(new Error('Authentication error'));
+            if (!user) return resolve(NextResponse.json({ message: 'Invalid credentials' }, { status: 401 }));
 
-                req.logIn(user, (err) => {
-                    if (err) {
-                        console.error('Login error:', err);
-                        return reject(new NextResponse(JSON.stringify({ message: 'Login error' }), { status: 500 }));
-                    }
-
-                    console.log('Login successful');
-                    return resolve(new NextResponse(JSON.stringify({ message: 'Login successful' }), { status: 200 }));
-                });
-            })(req);
-        });
+            req.logIn(user, (err) => {
+                if (err) return reject(new Error('Login error'));
+                return resolve(NextResponse.json({ message: 'Login successful' }));
+            });
+        })({ body: { username, password } });
     });
 }

@@ -15,14 +15,14 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
-            // const result = await response.json();
-            // console.log(result); // Log the response from the server
-            // if (response.ok) {
-            //     router.push('/'); // Redirect to home page after successful login
-            // } else {
-            //     console.error('Login failed:', result.message);
-            //     router.push('/login'); // Redirect to login page on failure
-            // }
+            const result = await response.json();
+            console.log(result); 
+            if (response.ok) {
+                router.push('/'); 
+            } else {
+                console.error('Login failed:');
+                router.push('/login'); 
+            }
         } catch (error) {
             console.error('An error occurred:', error);
         }
