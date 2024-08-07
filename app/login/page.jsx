@@ -14,17 +14,16 @@ const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
-        
-        const data = await response.json();
+        await response.json();
         if (response.ok) {
             router.push("/"); // Redireciona para a página inicial após login bem-sucedido
         } else {
-            console.error('Login failed:', data);
+            router.push('/login'); // Redireciona para a página de login ao falhar
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 bg-neutral-950 px-4 py-2 rounded-lg text-neutral-200">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 bg-neutral-950 px-4 py-2 rounded-lg text-black-200">
             <input
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
