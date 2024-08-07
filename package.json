@@ -13,6 +13,7 @@
     "connect-mongo": "^5.1.0",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "iron-session": "^8.0.2",
     "mongoose": "^8.4.4",
     "next": "^14.2.4",
     "next-connect": "^1.0.0",
