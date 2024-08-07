@@ -43,6 +43,9 @@ const Login = () => {
             <button type="submit" className="hover:bg-neutral-800 font-bold text-white min-w-max">
                 Login
             </button>
+            <a href="/register" className="hover:bg-neutral-800 font-bold text-white min-w-max text-center">
+                Registrar-se
+            </a>
         </form>
     );
 };
