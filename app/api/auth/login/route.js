@@ -10,6 +10,7 @@ const sessionMiddleware = session({
 });
 
 export async function POST(req) {
+    const {username, password} = await req.json();
     await connectMongoDB();
 
     return new Promise((resolve, reject) => {
@@ -20,7 +21,7 @@ export async function POST(req) {
                     return reject(new NextResponse(JSON.stringify({ message: 'Authentication error' }), { status: 500 }));
                 }
                 if (!user) {
-                    console.warn('Invalid credentials');
+                    console.warn('Invalid credentials:', info.message);
                     return resolve(new NextResponse(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 }));
                 }
 
