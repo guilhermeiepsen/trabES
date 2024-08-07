@@ -18,6 +18,7 @@ const Login = () => {
         if (response.ok) {
             router.push("/"); // Redireciona para a página inicial após login bem-sucedido
         } else {
+            console.error('Login failed');
             router.push('/login'); // Redireciona para a página de login ao falhar
         }
     };
