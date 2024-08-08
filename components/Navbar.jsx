@@ -6,9 +6,9 @@ export default function Navbar () {
             <Link className="text-neutral-100 font-bold tracking-widest" href={"/"}> 
                 HUMANLINK
             </Link>
-            <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addTopic"}>
+            {/* <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addTopic"}>
                 Registrar Funcionário
-            </Link>
+            </Link> */}
         </nav>
     );
 }

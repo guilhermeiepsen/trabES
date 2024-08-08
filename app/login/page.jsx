@@ -10,14 +10,14 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch(`http://localhost:3000/api/auth/login/${username}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ password })
             });
             await response.json();
             if (response.ok) {
-                router.push('/'); 
+                router.push(`/home/${username}`); 
             } else {
                 console.error('Login failed:');
                 router.push('/login'); 

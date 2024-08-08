@@ -1,25 +1,25 @@
-// app/api/auth/login.js
-import connectMongoDB from '@/libs/mongodb';
-import User from '@/models/user';
-import { NextResponse } from 'next/server';
+// // app/api/auth/login.js
+// import connectMongoDB from '@/libs/mongodb';
+// import User from '@/models/user';
+// import { NextResponse } from 'next/server';
 
-export async function POST(req) {
-    await connectMongoDB();
-    const { username, password } = await req.json();
+// export async function POST(req) {
+//     await connectMongoDB();
+//     const { username, password } = await req.json();
 
-    try {
-        const user = await User.findOne({ username });
-        if (!user) {
-            return NextResponse.json({ message: 'Incorrect username.' }, { status: 401 });
-        }
+//     try {
+//         const user = await User.findOne({ username });
+//         if (!user) {
+//             return NextResponse.json({ message: 'Incorrect username.' }, { status: 401 });
+//         }
 
-        const isPasswordValid = await user.verifyPassword(password);
-        if (!isPasswordValid) {
-            return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
-        }
+//         const isPasswordValid = await user.verifyPassword(password);
+//         if (!isPasswordValid) {
+//             return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
+//         }
 
-        return NextResponse.json({ message: 'Login successful' }, { status: 200 });
-    } catch (error) {
-        return NextResponse.json({ message: 'Authentication error', error: error.message }, { status: 500 });
-    }
-}
+//         return NextResponse.json({ message: 'Login successful' }, { status: 200 });
+//     } catch (error) {
+//         return NextResponse.json({ message: 'Authentication error', error: error.message }, { status: 500 });
+//     }
+// }

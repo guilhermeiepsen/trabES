@@ -1,9 +1,11 @@
-import EmployeesList from "@/components/EmployeesList";
-import VacationsList from "@/components/VacationsList";
+// import EmployeesList from "@/components/EmployeesList";
+// import VacationsList from "@/components/VacationsList";
+import LoginPage from "@/app/login/page";
 
 export default function Home() {
   return <>
-    <EmployeesList />
-    <VacationsList/>
+    <LoginPage/>
+    {/* <EmployeesList /> */}
+    {/* <VacationsList/> */}
   </>
 }
