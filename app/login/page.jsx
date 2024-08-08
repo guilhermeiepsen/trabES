@@ -49,7 +49,7 @@ const Login = () => {
                 Login
             </button>
             <a href="/register" className="hover:bg-neutral-800 font-bold text-white min-w-max text-center">
-                Register
+                Registrar-se
             </a>
         </form>
     );
