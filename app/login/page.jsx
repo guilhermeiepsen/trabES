@@ -15,8 +15,7 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
-            const result = await response.json();
-            console.log(result); 
+            await response.json();
             if (response.ok) {
                 router.push('/'); 
             } else {

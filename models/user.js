@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+// models/user.js
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     email: {
         type: String, 
         trim: true,
@@ -35,4 +35,4 @@ userSchema.methods.verifyPassword = function(password) {
 };
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
-module.exports = User;
+export default User;

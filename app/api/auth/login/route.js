@@ -1,11 +1,7 @@
-// pages/api/auth/login.js
-
+// app/api/auth/login.js
 import connectMongoDB from '@/libs/mongodb';
 import User from '@/models/user';
 import { NextResponse } from 'next/server';
-import { sessionMiddleware } from '@/libs/session';
-
-export const middleware = [sessionMiddleware];
 
 export async function POST(req) {
     await connectMongoDB();
@@ -21,8 +17,6 @@ export async function POST(req) {
         if (!isPasswordValid) {
             return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
         }
-
-        req.session.user = { id: user._id, username: user.username };
 
         return NextResponse.json({ message: 'Login successful' }, { status: 200 });
     } catch (error) {

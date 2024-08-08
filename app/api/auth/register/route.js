@@ -8,8 +8,8 @@ export async function POST(req) {
     const { username, password, email } = await req.json();
 
     try {
-        const user = new User({ username, email });
-        await User.register(user, password);
+        const user = new User({ username, email, password});
+        await user.save();
         return new NextResponse(JSON.stringify({ message: 'User registered successfully' }), { status: 201 });
     } catch (error) {
         console.error('Error registering user:', error);
