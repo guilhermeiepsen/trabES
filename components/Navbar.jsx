@@ -1,5 +1,6 @@
 import Link from "next/link"
 import LogoutButton from "./logout";
+import cookie from 'cookie';
 
 export default function Navbar() {
     return (
@@ -7,7 +8,8 @@ export default function Navbar() {
             <Link className="text-neutral-100 font-bold tracking-widest" href={"/home"}>
                 HUMANLINK
             </Link>
-            <LogoutButton/>
+            {cookie.parse['session'] != null ? <LogoutButton/> : ''}
+            {console.log(cookie.parse['session'])}
         </nav>
     );
 }
