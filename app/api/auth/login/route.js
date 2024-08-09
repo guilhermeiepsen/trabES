@@ -13,22 +13,23 @@ export async function POST(req) {
         if (!user) {
             return NextResponse.json({ message: 'Incorrect username.' }, { status: 401 });
         }
-
         const isPasswordValid = await user.verifyPassword(password);
         if (!isPasswordValid) {
             return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
-        }
-        const token = user.id;
-        const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
-        response.headers.set('Set-Cookie', cookie.serialize('session', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== 'development',
-            maxAge: 60 * 60 * 24, // 1 dia
-            sameSite: 'strict',
-            path: '/'
-        }));
+        } else {
+            const token = user.id;
+            const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
+            response.headers.set('Set-Cookie', cookie.serialize('session', token, {
+                httpOnly: true,
+                secure: 'humanlink',
+                maxAge: 60 * 60 * 24, // 1 dia
+                sameSite: 'strict',
+                path: '/'
+            }));
 
-        return response;
+            return response;
+        }
+
     } catch (error) {
         return NextResponse.json({ message: 'Authentication error', error: error.message }, { status: 500 });
     }
