@@ -20,7 +20,6 @@ export async function POST(req) {
             const token = user.id;
             const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
             response.headers.set('Set-Cookie', cookie.serialize('session', token, {
-                httpOnly: true,
                 secure: 'humanlink',
                 maxAge: 60 * 60 * 24, // 1 dia
                 sameSite: 'strict',
