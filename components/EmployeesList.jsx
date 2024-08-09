@@ -26,9 +26,6 @@ export default async function EmployeesList() {
   
   return (
         <>
-        <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
-                Pedir Férias
-            </Link>
           {employees.map((t) => (
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
                 <div>

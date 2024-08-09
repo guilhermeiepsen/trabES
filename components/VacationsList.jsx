@@ -30,7 +30,7 @@ export default async function EmployeesList() {
   
   return (
         <>
-        <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
+        <Link className="bg-red-950 hover:bg-red-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
                 Pedir Férias
             </Link>
           {vacations.map((t) => (
