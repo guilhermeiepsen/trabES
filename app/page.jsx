@@ -3,7 +3,7 @@ import VacationsList from "@/components/VacationsList";
 
 export default function Home() {
   return <>
-    <EmployeesList />
+    <EmployeesList/>
     <VacationsList/>
   </>
 }
