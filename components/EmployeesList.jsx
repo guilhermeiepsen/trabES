@@ -26,10 +26,18 @@ export default async function EmployeesList() {
   
   return (
         <>
-        <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
+        <div className="flex justify-between items-center px-8 py-0.1 rounded-lg">
+          <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
                 Pedir Férias
-            </Link>
+          </Link>
+          <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/searchEmployee"}>
+              Pesquisar Funcionário
+          </Link>
+        </div>
+
+
           {employees.map((t) => (
+        
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
                 <div>
                   <h2 className="font-bold text-2xl">{t.name}</h2>
