@@ -1,6 +1,6 @@
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
-import { HiPencilAlt, HiUser } from "react-icons/hi";
+import { HiPencilAlt, HiUser, HiAnnotation } from "react-icons/hi";
 
 const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
   try {
@@ -50,6 +50,9 @@ export default async function EmployeesList() {
                     </Link>
                     <Link href={`/viewEmployee/${t._id}`}>
                         <HiUser size={24} />
+                    </Link>
+                    <Link href={`/giveFeedback/${t._id}`}>
+                        <HiAnnotation/>
                     </Link>
                 </div>
               </div>
