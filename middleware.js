@@ -13,5 +13,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/home'], // Adicione suas rotas protegidas aqui
+    matcher: ['/home', '/addTopic', '/addVacation','/editTopic', '/viewEmployee', '/giveFeedback', '/hrPolicy', '/searchEmployee'],
 };
