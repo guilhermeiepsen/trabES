@@ -6,7 +6,7 @@ const AddUser = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userType, setUserType] = useState('');
+    const [userType, setUserType] = useState(2);
     const [name, setName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [cpf, setCpf] = useState('');
