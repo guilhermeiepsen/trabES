@@ -19,6 +19,7 @@ const Login = () => {
             if (response.ok) {
                 router.push('/home');
             } else {
+                alert("Credenciais incorretas");
                 console.error('Login failed:');
                 router.push('/login'); 
             }
