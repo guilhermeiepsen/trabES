@@ -1,5 +1,5 @@
 import connectMongoDB from "@/libs/mongodb";
-import Employee from "@/models/employee";
+import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
@@ -21,6 +21,6 @@ export async function PUT(request, { params }) {
 export async function GET(request, {params}) { //GET A SINGLE TOPIC BY ID
     const {id} = params;
     await connectMongoDB();
-    const employee = await Employee.findOne( {_id: id} );
-    return NextResponse.json({ employee }, { status: 200 });
+    const user = await User.findOne( {_id: id} );
+    return NextResponse.json({ user }, { status: 200 });
 }

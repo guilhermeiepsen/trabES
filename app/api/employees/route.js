@@ -18,6 +18,6 @@ export async function GET() {
 export async function DELETE(request) {
     const id = request.nextUrl.searchParams.get("id");
     await connectMongoDB();
-    await Employee.findByIdAndDelete(id);
+    await User.findByIdAndDelete(id);
     return NextResponse.json({message: "Employee deleted"}, {status: 200});
 }

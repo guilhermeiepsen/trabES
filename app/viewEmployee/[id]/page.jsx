@@ -18,10 +18,10 @@ const getEmployeeById = async(id) => {
 
 export default async function ViewEmployee({ params }) { //como é um dynamic router, ou seja, no final tem um /id(numero da id), recebe como parametro esse id.
     const { id } = params;
-    const {employee} = await getEmployeeById(id);
+    const {user} = await getEmployeeById(id);
     const {
         name, 
-        age,
+        dateOfBirth,
         cpf,
         phoneNumber,
         corporateEmail,
@@ -29,12 +29,12 @@ export default async function ViewEmployee({ params }) { //como é um dynamic ro
         admissionDate,
         role,
         active
-    } = employee;
+    } = user;
 
     return <ViewEmployeeForm 
                 id={id} 
                 name={name} 
-                age={age}
+                dateOfBirth={dateOfBirth}
                 cpf={cpf}
                 phoneNumber={phoneNumber} 
                 corporateEmail={corporateEmail} 
