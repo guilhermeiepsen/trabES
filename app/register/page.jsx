@@ -22,12 +22,13 @@ const AddUser = () => {
                 body: JSON.stringify(newUser),
             });
             if (response.ok) {
-                router.push("/viewEmployee");
+                router.push("/home");
             } else {
                 throw new Error("Failed to create new user");
             }
         } catch (error) {
             console.log(error);
+            router.push('/register');
         }
     };
 
