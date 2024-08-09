@@ -40,7 +40,7 @@ export default function ViewEmployeeForm({id, name, dateOfBirth, cpf, phoneNumbe
             }
 
             
-            router.push("/home");//"voltar um diretorio"
+            router.replace("/home");//"voltar um diretorio"
             router.refresh();
             
 

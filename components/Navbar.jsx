@@ -10,6 +10,7 @@ export default function Navbar() {
             </Link>
             {cookie.parse['session'] != null ? <LogoutButton/> : ''}
             {console.log(cookie.parse['session'])}
+            <LogoutButton/>
         </nav>
     );
 }
