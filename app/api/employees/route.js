@@ -1,5 +1,5 @@
 import connectMongoDB from "@/libs/mongodb";
-import Employee from "@/models/employee";
+import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -11,8 +11,8 @@ export async function POST(request) {
 
 export async function GET() {
     await connectMongoDB();
-    const employees = await Employee.find();
-    return NextResponse.json({employees});
+    const users = await User.find();
+    return NextResponse.json({users});
 }
 
 export async function DELETE(request) {

@@ -18,6 +18,40 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    userType: {
+        type: Number,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    dateOfBirth: {
+        type: Date,
+        required: true
+    },
+    cpf: {
+        type: Number,
+        required: true,
+        unique: true,
+    },
+    phoneNumber: {
+        type: Number,
+        required: true
+    },
+    admissionDate: {
+        type: Date,
+        required: true
+    },
+    department: {
+        type: String
+    }, 
+    role: {
+        type: String
+    },
+    active: {
+        type: Boolean
     }
 });
 
