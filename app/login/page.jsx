@@ -17,7 +17,7 @@ const Login = () => {
             });
             await response.json();
             if (response.ok) {
-                router.push('/home'); 
+                router.push('/home');
             } else {
                 console.error('Login failed:');
                 router.push('/login'); 
@@ -28,23 +28,25 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 bg-neutral-950 px-4 py-2 rounded-lg text-black-200">
-            <input
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
-                type="text"
-                placeholder="Username"
-                className="p-2 rounded-md"
-                required
-            />
-            <input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                type="password"
-                placeholder="Password"
-                className="p-2 rounded-md"
-                required
-            />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+            <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+                    Nome de usuário
+                    <input
+                        onChange={(e) => setUsername(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
+                        value={username}
+                        type = "text"
+                        required
+                    />
+            </label>
+             <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+                    Senha
+                    <input
+                        onChange={(e) => setPassword(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
+                        value={password}
+                        type = "password"
+                        required
+                    />
+            </label>
             <button type="submit" className="hover:bg-neutral-800 font-bold text-white min-w-max">
                 Login
             </button>
