@@ -4,9 +4,7 @@ import cookie from 'cookie';
 export async function GET(req) {
     const response = NextResponse.json({ message: 'Logout successful' }, { status: 200 });
     response.headers.set('Set-Cookie', cookie.serialize('session', '', {
-        secure: 'humanlink',
-        maxAge: -1, 
-        sameSite: 'strict',
+        maxAge: -1,
         path: '/'
     }));
 
