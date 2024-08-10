@@ -1,5 +1,5 @@
 import connectMongoDB from '@/libs/mongodb';
-import Employee from '@/models/employee';
+import User from "@/models/user";
 import { NextResponse } from 'next/server';
 
 export async function GET(request, {params}) {
@@ -12,11 +12,11 @@ export async function GET(request, {params}) {
   await connectMongoDB();
 
   try {
-    const employees = await Employee.find({
+    const user = await User.find({
       name: { $regex: name, $options: 'i' }, // Pesquisa não sensível a maiúsculas/minúsculas
     });
 
-    return NextResponse.json(employees, { status: 200 });
+    return NextResponse.json(user, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Error retrieving employees' }, { status: 500 });
