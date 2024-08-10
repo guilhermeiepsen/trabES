@@ -19,10 +19,9 @@ export async function POST(req) {
             const token = user.id;
             const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
 
-            // Set the cookie using NextResponse's cookies method
             response.cookies.set('user', token, {
                 path: '/',
-                maxAge: 60 * 60 * 24, // 1 day
+                maxAge: 60 * 60 * 24, // 1 dia
                 httpOnly: false,
             });
 
