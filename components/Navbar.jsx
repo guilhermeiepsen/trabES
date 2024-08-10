@@ -1,9 +1,8 @@
 import Link from "next/link";
 import LogoutButton from "./logout";
-import Cookies from 'js-cookie';
 
 export default function Navbar() {
-    const sessionCookie = Cookies.get('session');
+    const sessionCookie = document.cookie;
 
     return (
         <nav className="flex justify-between items-center px-8 py-3 rounded-lg">
