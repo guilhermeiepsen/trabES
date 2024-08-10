@@ -23,6 +23,7 @@ export async function POST(req) {
                 path: '/',
                 maxAge: 60 * 60 * 24, // 1 dia
                 httpOnly: false,
+                sameSite: 'Lax',
             });
 
             return response;
