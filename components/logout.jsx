@@ -11,7 +11,6 @@ export default function LogoutButton(){
             });
             if (response.ok) {
                 router.push('/login'); // Redirecionar para a página de login após o logout
-                router.refresh();
             } else {
                 console.error('Logout failed');
             }

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { cookies } from 'next/headers';
 
 // Por enquanto tem que usar esse useEffect e useState do react para conseguir ter acesso ao cookie
 
@@ -16,5 +17,6 @@ export default function Home() {
           <Link className="text-neutral-100" href={"/searchEmployee"}>
                       PESQUISAR FUNCIONÁRIO
           </Link>
+          {console.log(cookies().get('user'))}
         </div>
 }
