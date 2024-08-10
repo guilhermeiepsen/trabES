@@ -2,7 +2,6 @@ import Link from "next/link";
 import LogoutButton from "./logout";
 import { cookies } from "next/headers";
 
-// Por enquanto tem que usar esse useEffect e useState do react para conseguir ter acesso ao cookie
 
 export default function Navbar() {
     const sessionCookie = cookies().get('user');

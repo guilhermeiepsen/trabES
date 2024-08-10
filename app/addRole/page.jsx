@@ -3,48 +3,43 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AddEmployee() {
+export default function addManager() {
     
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
-    const [cpf, setCpf] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [corporateEmail, setCorporateEmail] = useState("");
+    // const [cpf, setCpf] = useState("");
+    // const [phoneNumber, setPhoneNumber] = useState("");
+    // const [corporateEmail, setCorporateEmail] = useState("");
     const [department, setDepartment] = useState("");
-    const [admissionDate, setAdmissionDate] = useState();
+    // const [admissionDate, setAdmissionDate] = useState();
     const [role, setRole] = useState("");
-    const [active, setActive] = useState(1);
+    // const [active, setActive] = useState(1);
     
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const employee = {
+            const newManager = {
                 name: name,
                 age: age,
-                cpf: cpf,
-                phoneNumber: phoneNumber,
-                corporateEmail: corporateEmail,
                 department: department,
-                admissionDate: admissionDate,
                 role: role,
-                active: active,
             };
-            const res = await fetch('http://localhost:3000/api/employees', {
+            const res = await fetch('http://localhost:3000/api/manager', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
                 },
-                body: JSON.stringify(employee),
+                body: JSON.stringify(newManager),
             });
             //depois que o topico eh criado vamos para a homepage
-
+            await res.json();
             if(res.ok) {
                 router.push("/");
                 router.refresh(); //dar um refresh para show up o topico criado
             } else {
-                throw new Error("Failed to create a employee");
+                throw new Error("Failed to promote to manager");
             }
         } catch (error) {
             console.log(error);
@@ -66,33 +61,10 @@ export default function AddEmployee() {
                     placeholder="Idade"
                 />
                 <input
-                    onChange={(e) => setCpf(e.target.value)}
-                    value={cpf}
-                    type = "number"
-                    placeholder="CPF"
-                />
-                <input
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    value={phoneNumber}
-                    type = "number"
-                    placeholder="Número de Telefone"
-                />
-                <input
-                    onChange={(e) => setCorporateEmail(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
-                    value={corporateEmail}
-                    type = "email"
-                    placeholder="Email Corporativo"
-                />
-                <input
                     onChange={(e) => setDepartment(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
                     value={department}
                     type = "text"
                     placeholder="Departamento"
-                />
-                <input
-                    onChange={(e) => setAdmissionDate(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
-                    value={admissionDate}
-                    type = "date"
                 />
                 <input
                     onChange={(e) => setRole(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
