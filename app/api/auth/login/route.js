@@ -17,6 +17,7 @@ export async function POST(req) {
             return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
         } else {
             const token = user.id;
+
             const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
 
             response.cookies.set('user', token, {
