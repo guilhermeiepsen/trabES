@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function ViewEmployeeForm({id, name, age, cpf, phoneNumber, corporateEmail, department, admissionDate, role, active}) {
+export default function ViewEmployeeForm({id, name, dateOfBirth, cpf, phoneNumber, corporateEmail, department, admissionDate, role, active}) {
 
     const [newName, setNewName] = useState(name);
-    const [newAge, setNewAge] = useState(age);
+    const [newAge, setNewAge] = useState(dateOfBirth);
     const [newCpf, setNewCpf] = useState(cpf);
     const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
     const [newCorporateEmail, setNewCorporateEmail] = useState(corporateEmail);
@@ -16,6 +16,10 @@ export default function ViewEmployeeForm({id, name, age, cpf, phoneNumber, corpo
     const [newRole, setNewRole] = useState(role);
     const [newActive, setNewActive] = useState(active);
     var admission = new Date(newAdmissionDate);
+    var birth = new Date(newAge);
+    var today = new Date();
+    var age = Math.abs(birth.getFullYear() - today.getFullYear());
+
 
     const router = useRouter();
 
@@ -36,7 +40,7 @@ export default function ViewEmployeeForm({id, name, age, cpf, phoneNumber, corpo
             }
 
             
-            router.push("/");//"voltar um diretorio"
+            router.replace("/home");//"voltar um diretorio"
             router.refresh();
             
 
@@ -54,7 +58,7 @@ export default function ViewEmployeeForm({id, name, age, cpf, phoneNumber, corpo
             </div>
             <div className="flex gap-2">
                 <p className="text-neutral-400 text-sm">Idade: </p>
-                <h2 className="text-lg">{newAge} anos</h2>
+                <h2 className="text-lg">{age} anos</h2>
             </div>
             <div className="flex gap-2">
                 <p className="text-neutral-400 text-sm">Número de Telefone: </p>
