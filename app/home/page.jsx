@@ -1,5 +1,5 @@
 import Link from "next/link"
-import cookies from 'cookie'
+import Cookies from 'js-cookie';
 
 export default function Home() {
   return <div className="*:p-4 *:bg-neutral-950 my-3 flex flex-col justify-between items-center gap-9 items-start *:rounded-lg  text-neutral-100 tracking-wide">
@@ -15,6 +15,6 @@ export default function Home() {
           <Link className="text-neutral-100" href={"/searchEmployee"}>
                       PESQUISAR FUNCIONÁRIO
           </Link>
-          {cookies.parse['session']}
+          {console.log(Cookies.get('session'))}
         </div>
 }
