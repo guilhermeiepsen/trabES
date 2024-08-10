@@ -1,8 +1,19 @@
-import Link from "next/link"
+"use client"; 
+
+import Link from "next/link";
 import LogoutButton from "./logout";
-import cookie from 'cookie';
+import { useEffect, useState } from 'react';
+import cookies from 'js-cookie';
+
+// Por enquanto tem que usar esse useEffect e useState do react para conseguir ter acesso ao cookie
 
 export default function Navbar() {
+    const [sessionCookie, setSessionCookie] = useState(null);
+
+    useEffect(() => {
+        setSessionCookie(cookies.get('user'));
+    }, []);
+    
     return (
         <nav className="flex justify-between items-center px-8 py-3 rounded-lg">
 <<<<<<< HEAD
@@ -12,9 +23,7 @@ export default function Navbar() {
 >>>>>>> d3e8d23bdd2b831a7f133c5c22ac912a732dc599
                 HUMANLINK
             </Link>
-            {cookie.parse['session'] != null ? <LogoutButton/> : ''}
-            {console.log(cookie.parse['session'])}
-            <LogoutButton/>
+            {sessionCookie ? <LogoutButton /> : ''}
         </nav>
     );
 }

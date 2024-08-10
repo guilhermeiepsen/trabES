@@ -1,5 +1,6 @@
 import Link from "next/link"
-import cookies from 'cookie'
+
+// Por enquanto tem que usar esse useEffect e useState do react para conseguir ter acesso ao cookie
 
 export default function Home() {
 <<<<<<< HEAD
@@ -21,7 +22,6 @@ export default function Home() {
           <Link className="text-neutral-100" href={"/searchEmployee"}>
                       PESQUISAR FUNCIONÁRIO
           </Link>
-          {cookies.parse['session']}
         </div>
 >>>>>>> d3e8d23bdd2b831a7f133c5c22ac912a732dc599
 }

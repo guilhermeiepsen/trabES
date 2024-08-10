@@ -13,15 +13,15 @@ const Login = () => {
             const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password }),
+                credentials: 'include',
             });
             await response.json();
             if (response.ok) {
                 router.push('/home');
             } else {
                 alert("Credenciais incorretas");
-                console.error('Login failed:');
-                router.push('/login'); 
+                console.error('Login failed:'); 
             }
         } catch (error) {
             console.error('An error occurred:', error);
