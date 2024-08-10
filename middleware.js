@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server';
 
 export async function middleware(req) {
-    const cookies = req.cookies;
-    const session = cookies.get('user');
+    const session = req.cookies.get('user');
 
-    if (!session) {
+    if (session) {
+        console.log(session);
+        return NextResponse.next();
+    }else{
         return NextResponse.redirect(new URL('/', req.url));
     }
-
-    return NextResponse.next();
+    
 }
 
 export const config = {
