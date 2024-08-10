@@ -4,7 +4,6 @@ export async function middleware(req) {
     const session = req.cookies.get('user');
 
     if (session) {
-        console.log(session);
         return NextResponse.next();
     }else{
         return NextResponse.redirect(new URL('/', req.url));

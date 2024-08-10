@@ -16,12 +16,13 @@ const Login = () => {
                 body: JSON.stringify({ username, password }),
                 credentials: 'include',
             });
-            await response.json();
+           const data = await response.json();
             if (response.ok) {
                 router.push('/home');
+                router.refresh();
             } else {
                 alert("Credenciais incorretas");
-                console.error('Login failed:'); 
+                console.error('Login failed:', data.message); 
             }
         } catch (error) {
             console.error('An error occurred:', error);
