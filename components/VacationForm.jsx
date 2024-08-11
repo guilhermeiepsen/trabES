@@ -60,7 +60,7 @@ export default function AddVacation({ id }) {
                     />
                 </label>
                 <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
-                    Data de Fim: 
+                    Data de Fim: {idLogado}
                     <input
                         onChange={(e) => setEndDate(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
                         value={endDate}

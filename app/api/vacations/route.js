@@ -1,11 +1,12 @@
 import connectMongoDB from "@/libs/mongodb";
 import Vacation from "@/models/vacation";
+import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { startDate, endDate, message } = await request.json();
+    const { startDate, endDate, message, employeeId, managerId, approved } = await request.json();
     await connectMongoDB();
-    await Vacation.create({ startDate, endDate, message });
+    await Vacation.create({ startDate, endDate, message, employeeId, managerId, approved });
     return NextResponse.json({ message: "Vacation Request Registered" }, { status: 201 });
 }
 
