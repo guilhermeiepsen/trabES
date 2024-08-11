@@ -1,37 +1,28 @@
 "use client";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function FeedbackForm({ id, name }) {
-    
-    const [giverId, setGiverId] = useState('');
+export default function FeedbackForm({ id, giverId }) {
+    const [userId] = useState(giverId);
+    const [employeeId] = useState(id);
 
-    useEffect(() => {
-        // Obtenha o cookie e verifique se ele é válido
-        const sessionCookie = Cookies.get('sessionCookie') || ''; 
-        setGiverId(sessionCookie);
-    }, []);
-
-    const employeeId = id;
     const [rate, setRate] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
 
     const router = useRouter();
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const feedback = {
-                employeeId, // ID do funcionário
-                giverId, // ID do avaliador
-                rate: parseInt(rate, 10), // Avaliação (garantindo que é um número inteiro)
-                message, // Mensagem do feedback
-            };
+        const feedback = {
+            giverId: userId,
+            rate,
+            message
+        };
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/`, {
+        try {
+            const res = await fetch(`/api/feedback/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,27 +30,21 @@ export default function FeedbackForm({ id, name }) {
                 body: JSON.stringify(feedback),
             });
 
+            console.log(res);
             if (res.ok) {
                 setStatus('Feedback enviado com sucesso!');
-                // Limpar os campos
-                setGiverId('');
                 setRate('');
                 setMessage('');
-                
-                // Redirecionar para a página inicial ou outra página
-                router.push('/');
-                router.refresh(); // Atualiza a página
             } else {
-                throw new Error('Erro ao enviar feedback.');
+                setStatus('Erro ao enviar feedback.');
             }
         } catch (error) {
-            console.error(error);
             setStatus('Erro ao enviar feedback.');
         }
     };
 
     return (
-        <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
+        <div className="flex flex-col gap-2 text-neutral-100 items-center px-4 tracking-wide">
             <h1 className="text-2xl font-bold mb-4">Enviar Feedback</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
@@ -68,7 +53,7 @@ export default function FeedbackForm({ id, name }) {
                 </div>
                 <div>
                     <label htmlFor="giverId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <h2 className="text-lg flex justify-center">{giverId}</h2>
+                    <h2 className="text-lg flex justify-center">{userId}</h2>
                 </div>
                 <div>
                     <label htmlFor="rate" className="block text-sm font-medium text-neutral-400">Avaliação (0-5)</label>
