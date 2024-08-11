@@ -54,7 +54,7 @@ export default async function EmployeesList() {
         <>
         <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
         <Link className="bg-red-950 hover:bg-red-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
-                Pedir Férias
+                Solicitar Férias
             </Link>
           {vacations.map((t) => (
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
