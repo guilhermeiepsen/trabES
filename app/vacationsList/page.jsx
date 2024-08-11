@@ -39,7 +39,7 @@ const getEmployeeById = async(id) => {
 export default async function EmployeesList() {
     
   const { vacations } = await getVacations();
-  vacations.map((t) => {
+  vacations.map(async (t) => {
     t.startDate = new Date(t.startDate);
     t.endDate = new Date(t.endDate);
   })
@@ -56,7 +56,7 @@ export default async function EmployeesList() {
           {vacations.map((t) => (
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
                 <div>
-                  <h2 className="font-bold text-2xl">{t.employee}</h2>
+                  <h2 className="font-bold text-2xl">PEDIDO {t._id}</h2>
                   <h4 className="text-sm text-neutral-400">
                     Pedindo de <span className="text-neutral-300 font-bold">{t.startDate.toLocaleDateString('pt-BR')} </span> 
                     a <span className="text-neutral-300 font-bold">{t.endDate.toLocaleDateString('pt-BR')}</span>
@@ -72,6 +72,7 @@ export default async function EmployeesList() {
                     <RemoveBtn id={t._id} />
                 </div>
               </div>
+              
           ))}
         </>
       );

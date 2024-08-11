@@ -12,7 +12,7 @@ export async function POST(request) {
 
 export async function GET() {
     await connectMongoDB();
-    const vacations = await Vacation.find();
+    const vacations = await Vacation.find().populate('employeeId');
     return NextResponse.json({vacations});
 }
 

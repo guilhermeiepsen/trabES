@@ -2,8 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const vacationSchema = new Schema(
   {
-    employeeId: String,
-    managerId: String,
+    employeeId: {type: Schema.Types.ObjectId, ref: 'User'},
+    managerId: {type: Schema.Types.ObjectId, ref: 'User'},
     approved: Boolean,
     startDate: Date,
     endDate: Date,
