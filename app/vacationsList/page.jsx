@@ -46,8 +46,12 @@ export default async function EmployeesList() {
   })
   console.log(vacations);
 
-  const {value} = cookies().get('user');
-  const {role} = cookies().get('role');
+  let cookie = cookies().get('user');
+  const loggedId = cookie.value;
+  cookie = cookies().get('role');
+  const role = cookie.value;
+
+  console.log(loggedId);
   console.log(role);
   
   return (
@@ -67,8 +71,8 @@ export default async function EmployeesList() {
                   <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
                 <div className="flex gap-2">
-                    {!t.approved ? <ApproveVacation id={t._id} managerId={value}/> : 'Aprovada por ' + t.managerId.username}
-                    {role < 0 ? <RemoveBtn id={t._id}/> : ''}
+                    {!t.approved ? <ApproveVacation id={t._id} managerId={loggedId}/> : 'Aprovada por ' + t.managerId.username}
+                    {1 < 0 ? <RemoveBtn id={t._id}/> : ''}
                     
                 </div>
               </div>

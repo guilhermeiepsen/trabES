@@ -39,7 +39,7 @@ export default function AddVacation({ id }) {
             //depois que o topico eh criado vamos para a homepage
 
             if(res.ok) {
-                router.push("/home");
+                router.push("/vacationsList");
                 router.refresh(); //dar um refresh para show up o topico criado
             } else {
                 throw new Error("Failed to create a employee");
