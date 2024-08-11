@@ -1,10 +1,9 @@
-"use client";
 import FeedbackForm from "@/components/FeedbackForm";
-import { useState } from "react";
+import { cookies } from 'next/headers';
 
 const getEmployeeById = async(id) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/employees/${id}`, {
+        const res = await fetch(`http://localhost:3000/api/feedback/${id}`, {
             cache: "no-store",
         });
 
@@ -21,19 +20,13 @@ const getEmployeeById = async(id) => {
 
 export default async function CreateFeedback({ params }) {
     const { id } = params;
-    const { employeeId } = id;
-    const {employee} = await getEmployeeById(id);
-    const {
-        name, 
-        phoneNumber,
-        corporateEmail,
-        department,
-        role,
-        active
-    } = employee;
+    const {user} = await getEmployeeById(id);
+    const {value} = cookies().get('user');
+    const giverId = value;
+
 
     return <FeedbackForm 
                 id={id} 
-                name={name} 
+                giverId={giverId} 
                 />;
 }

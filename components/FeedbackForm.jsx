@@ -1,19 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function FeedbackForm({ id, name }) {
+export default function FeedbackForm({ id, giverId }) {
     
-    const [giverId, setGiverId] = useState('');
+    const [userId] = useState(giverId);
+    const [employeeId] = useState(id);
 
-    useEffect(() => {
-        // Obtenha o cookie e verifique se ele é válido
-        const sessionCookie = Cookies.get('sessionCookie') || ''; 
-        setGiverId(sessionCookie);
-    }, []);
-
-    const employeeId = id;
     const [rate, setRate] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
@@ -23,39 +16,6 @@ export default function FeedbackForm({ id, name }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const feedback = {
-                employeeId, // ID do funcionário
-                giverId, // ID do avaliador
-                rate: parseInt(rate, 10), // Avaliação (garantindo que é um número inteiro)
-                message, // Mensagem do feedback
-            };
-
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(feedback),
-            });
-
-            if (res.ok) {
-                setStatus('Feedback enviado com sucesso!');
-                // Limpar os campos
-                setGiverId('');
-                setRate('');
-                setMessage('');
-                
-                // Redirecionar para a página inicial ou outra página
-                router.push('/');
-                router.refresh(); // Atualiza a página
-            } else {
-                throw new Error('Erro ao enviar feedback.');
-            }
-        } catch (error) {
-            console.error(error);
-            setStatus('Erro ao enviar feedback.');
-        }
     };
 
     return (
@@ -68,7 +28,7 @@ export default function FeedbackForm({ id, name }) {
                 </div>
                 <div>
                     <label htmlFor="giverId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <h2 className="text-lg flex justify-center">{giverId}</h2>
+                    <h2 className="text-lg flex justify-center">{userId}</h2>
                 </div>
                 <div>
                     <label htmlFor="rate" className="block text-sm font-medium text-neutral-400">Avaliação (0-5)</label>
