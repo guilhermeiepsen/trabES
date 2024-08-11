@@ -1,8 +1,10 @@
 "use client";
+import Link from 'next/link';
 
 export default function HRPolicyPage() {
     return (
         <div className="min-h-screen p-8 text-white">
+            <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
             <header className="text-center mb-6">
                 <h1 className="text-3xl font-bold">Política de RH</h1>
                 <p className="text-lg">Bem-vindo à política de recursos humanos da nossa empresa.</p>
