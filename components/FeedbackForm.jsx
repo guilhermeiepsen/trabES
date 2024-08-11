@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function FeedbackForm({ id, giverId }) {
-    
     const [userId] = useState(giverId);
     const [employeeId] = useState(id);
 
@@ -12,14 +11,40 @@ export default function FeedbackForm({ id, giverId }) {
     const [status, setStatus] = useState('');
 
     const router = useRouter();
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const feedback = {
+            giverId: userId,
+            rate,
+            message
+        };
+
+        try {
+            const res = await fetch(`/api/feedback/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(feedback),
+            });
+
+            console.log(res);
+            if (res.ok) {
+                setStatus('Feedback enviado com sucesso!');
+                setRate('');
+                setMessage('');
+            } else {
+                setStatus('Erro ao enviar feedback.');
+            }
+        } catch (error) {
+            setStatus('Erro ao enviar feedback.');
+        }
     };
 
     return (
-        <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
+        <div className="flex flex-col gap-2 text-neutral-100 items-center px-4 tracking-wide">
             <h1 className="text-2xl font-bold mb-4">Enviar Feedback</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
