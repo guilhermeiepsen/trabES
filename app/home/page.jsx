@@ -9,7 +9,7 @@ export default function Home() {
           <Link className="hover:bg-neutral-800" href={`/viewEmployee/${value}`}>
                       MEU PERFIL
           </Link>
-          <Link className="hover:bg-neutral-800" href={"/addTopic"}>
+          <Link className="hover:bg-neutral-800" href={"/register"}>
                 ADICIONAR FUNCIONÁRIO
             </Link>
           <Link className="hover:bg-neutral-800" href={"/employeesList"}>

@@ -22,6 +22,11 @@ const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A 
 export default async function EmployeesList() {
     
   const { users } = await getEmployees();
+  var rolesDescription = {
+    0: 'Administrador',
+    1: 'Gerente',
+    2: 'Funcionário'
+  }
   //console.log(users);
   
   return (
@@ -34,19 +39,20 @@ export default async function EmployeesList() {
                   <h4 className="text-sm text-neutral-300">{t.role} <span className="text-neutral-400">em</span> {t.department}</h4>
                 </div>
                 <div className="flex gap-2">
-                    <RemoveBtn id={t._id} />
-                    <Link href={`/editTopic/${t._id}`}>
+                  {rolesDescription[t.userType]}
+                    <Link href={`/editTopic/${t._id}`} title="Editar">
                         <HiPencilAlt size={24} />
                     </Link>
-                    <Link href={`/viewEmployee/${t._id}`}>
+                    <Link href={`/viewEmployee/${t._id}`} title="Visualizar">
                         <HiUser size={24} />
                     </Link>
-                    <Link href={`/giveFeedback/${t._id}`}>
+                    <Link href={`/giveFeedback/${t._id}`} title="Avaliar">
                         <HiAnnotation size={24}/>
                     </Link>
-                    <Link href={`/addManager/${t._id}`}>
+                    <Link href={`/addManager/${t._id}`} title="Promover a Gerente">
                         <HiOutlineStar size={24}/>
                     </Link>
+                    <RemoveBtn id={t._id} />
                 </div>
               </div>
           ))}

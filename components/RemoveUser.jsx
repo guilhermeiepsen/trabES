@@ -19,7 +19,7 @@ export default function RemoveUser({ id }) {
     }
 
     return (
-    <button onClick={removeTopic} className="text-red-400">
+    <button onClick={removeTopic} className="text-red-400" title="Remover">
         <HiTrash size={24} />
     </button>
     );
