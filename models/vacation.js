@@ -2,10 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const vacationSchema = new Schema(
   {
+    employeeId: String,
+    managerId: String,
+    approved: Boolean,
     startDate: Date,
     endDate: Date,
-    message: String,
-    // employeeId: Number
+    message: String
   },
   {
     timestamps: true,

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RemoveBtn from "../../components/RemoveBtn";
 import { HiCheck, HiInformationCircle } from "react-icons/hi";
+import { cookies } from "next/headers";
 
 const getVacations = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
   try {
@@ -27,6 +28,8 @@ export default async function EmployeesList() {
     t.endDate = new Date(t.endDate);
   })
   //console.log(topics);
+
+  const {value} = cookies().get('user');
   
   return (
         <>
