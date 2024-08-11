@@ -2,10 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 const employeeFeedbackSchema = new Schema(
   {
-    employeeId: String, // Use String para o ID do funcionário
-    giverId: String,    // Use String para o ID do avaliador
-    rate: Number,       // Use Number para a avaliação
-    message: String     // Use String para a mensagem
+    employeeId: String,
+    giverId: String,
+    rate: Number,
+    message: String,
+    createdAt: Date,
   },
   {
     timestamps: true,

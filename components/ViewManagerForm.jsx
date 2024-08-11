@@ -24,6 +24,7 @@ export default function ViewManagerForm({ id, name, department, role }) {
 
             const data = await res.json();
             router.push('/employeesList');
+            router.refresh();
         } catch (error) {
             console.log(error.message);
         }
@@ -46,9 +47,8 @@ export default function ViewManagerForm({ id, name, department, role }) {
             <button
                 onClick={handlePromotion}
                 className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center"
-                disabled={newRole === 'Gerente'}
             >
-                {newRole !== 'Gerente' ? 'Promover a Gerente' : 'Funcionário já é Gerente'}
+                Promover a gerente
             </button>
            </div>
     );

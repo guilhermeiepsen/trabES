@@ -5,17 +5,26 @@ import { cookies } from 'next/headers';
 
 export default function Home() {
   const {value} = cookies().get('user')
-  return <div className="*:p-4 *:bg-neutral-950 my-3 flex flex-col justify-between items-center gap-9 items-start *:rounded-lg  text-neutral-100 tracking-wide">
-          <Link className="text-neutral-100" href={"/employeesList"}>
+  return <div className="*:flex *:items-end *:justify-end *:p-4 *:bg-neutral-950 *:rounded-lg *:h-32 *:w-full grid grid-cols-2 gap-4 *:text-neutral-100 tracking-wide">
+          <Link className="hover:bg-neutral-800" href={`/viewEmployee/${value}`}>
+                      MEU PERFIL
+          </Link>
+          <Link className="hover:bg-neutral-800" href={"/addTopic"}>
+                ADICIONAR FUNCIONÁRIO
+            </Link>
+          <Link className="hover:bg-neutral-800" href={"/employeesList"}>
                       LISTA DE FUNCIONÁRIOS
           </Link>
-          <Link className="text-neutral-100" href={"/vacationsList"}>
+          <Link className="hover:bg-neutral-800" href={"/addVacation"}>
+                PEDIR FÉRIAS
+          </Link>
+          <Link className="hover:bg-neutral-800" href={"/vacationsList"}>
                       LISTA DE FÉRIAS
           </Link>
-          <Link className="text-neutral-100" href={"/hrPolicy"}>
+          <Link className="hover:bg-neutral-800" href={"/hrPolicy"}>
                       POLÍTICA DE RH
           </Link>
           
-          {console.log(cookies().get('user'))}
+          {console.log(value)} 
         </div>
 }

@@ -20,34 +20,7 @@ export default function ViewEmployeeForm({id, name, dateOfBirth, cpf, phoneNumbe
     var today = new Date();
     var age = Math.abs(birth.getFullYear() - today.getFullYear());
 
-
     const router = useRouter();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify({newName, newAge, newCpf, newPhoneNumber, newCorporateEmail, newDepartment, newAdmissionDate, newRole, newActive}),
-            });
-
-            if(!res.ok) {
-                throw new Error("Erro ao editar tópico.");
-            }
-
-            
-            router.replace("/home");//"voltar um diretorio"
-            router.refresh();
-            
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     return (
         <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
@@ -80,7 +53,7 @@ export default function ViewEmployeeForm({id, name, dateOfBirth, cpf, phoneNumbe
                 <p className="text-neutral-400 text-sm">Situação: </p>
                 <h2 className={active ? "text-lg text-green-300" : "text-lg"}>{active ? 'Ativo' : 'Inativo'}</h2>
             </div>
-            <Link href="/" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
+            <Link href="/employeesList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
         </div>
     );
 }

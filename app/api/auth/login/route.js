@@ -17,10 +17,18 @@ export async function POST(req) {
             return NextResponse.json({ message: 'Incorrect password.' }, { status: 401 });
         } else {
             const token = user.id;
+            const role = user.userType;
 
             const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
 
             response.cookies.set('user', token, {
+                path: '/',
+                maxAge: 60 * 60 * 24, // 1 dia
+                httpOnly: false,
+                sameSite: 'Lax',
+            });
+
+            response.cookies.set('role', role, {
                 path: '/',
                 maxAge: 60 * 60 * 24, // 1 dia
                 httpOnly: false,
