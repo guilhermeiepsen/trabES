@@ -53,7 +53,7 @@ export default async function EmployeesList() {
                     <Link href={`/giveFeedback/${t._id}`}>
                         <HiAnnotation size={24}/>
                     </Link>
-                    <Link href={`/`}>
+                    <Link href={`/addManager/${t._id}`}>
                         <HiOutlineStar size={24}/>
                     </Link>
                     <Link href={`/giveMisconduct/${t._id}`}>

@@ -1,8 +1,6 @@
 "use client";
-//import { useEffect } from 'react';
-//import cookie from "js-cookie"
-//import cookie from "cookie";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 //import { getSession } from "@/middleware";
 
@@ -65,6 +63,9 @@ export default function FeedbackForm({ idEmployee }) {
     
     const employeeId = idEmployee;
     //console.log(idEmployee);
+
+export default function FeedbackForm({ id, name }) {
+    
     const [giverId, setGiverId] = useState('');
     const [rate, setRate] = useState('');
     const [message, setMessage] = useState('');
@@ -77,10 +78,10 @@ export default function FeedbackForm({ idEmployee }) {
 
         try {
             const feedback = {
-                employeeId: employeeId, // ID do funcionário
-                giverId: giverId, // ID do avaliador
+                employeeId, // ID do funcionário
+                giverId, // ID do avaliador
                 rate: parseInt(rate, 10), // Avaliação (garantindo que é um número inteiro)
-                message: message, // Mensagem do feedback
+                message, // Mensagem do feedback
             };
 
             const res = await fetch('http://localhost:3000/api/feedback/', {

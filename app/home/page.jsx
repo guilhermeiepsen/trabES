@@ -1,9 +1,10 @@
 import Link from "next/link"
 import { cookies } from 'next/headers';
 
-// Por enquanto tem que usar esse useEffect e useState do react para conseguir ter acesso ao cookie
+// usando o metodo de cookies do next tu tem acesso ao ao id do usuario
 
 export default function Home() {
+  const {value} = cookies().get('user')
   return <div className="*:p-4 *:bg-neutral-950 my-3 flex flex-col justify-between items-center gap-9 items-start *:rounded-lg  text-neutral-100 tracking-wide">
           <Link className="text-neutral-100" href={"/employeesList"}>
                       LISTA DE FUNCIONÁRIOS
