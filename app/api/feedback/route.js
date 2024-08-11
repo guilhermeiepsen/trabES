@@ -1,3 +1,5 @@
+// pages/api/feedback.js
+
 import connectMongoDB from "@/libs/mongodb";
 import EmployeeFeedback from "@/models/employeeFeedback";
 import { NextResponse } from "next/server";
@@ -13,7 +15,12 @@ export async function POST(request) {
         }
 
         // Criar o feedback
-        await EmployeeFeedback.create({ employeeId, giverId, rate, message });
+        await EmployeeFeedback.create({ 
+            employeeId: String(employeeId), // Garantir que seja uma string
+            giverId: String(giverId), // Garantir que seja uma string
+            rate: parseInt(rate, 10), // Converter rate para número inteiro
+            message 
+        });
 
         return NextResponse.json({ message: "Feedback enviado com sucesso" }, { status: 201 });
     } catch (error) {
