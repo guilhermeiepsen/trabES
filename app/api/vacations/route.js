@@ -11,7 +11,7 @@ export async function POST(request) {
 
 export async function GET() {
     await connectMongoDB();
-    const vacations = await Vacation.find().populate('employeeId');
+    const vacations = await Vacation.find().populate('employeeId').populate('managerId');
     return NextResponse.json({vacations});
 }
 
@@ -24,8 +24,9 @@ export async function DELETE(request) {
 
 export async function PUT(request) {
     const id = request.nextUrl.searchParams.get("id");
+    const managerId = request.nextUrl.searchParams.get("manager");
     console.log(id);
     await connectMongoDB();
-    await Vacation.findByIdAndUpdate(id, { approved: true });
+    await Vacation.findByIdAndUpdate(id, { approved: true, managerId: managerId});
     return NextResponse.json({message: "Vacation Request approved"}, {status: 200});
 }
