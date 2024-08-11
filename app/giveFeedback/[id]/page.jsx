@@ -1,7 +1,11 @@
+/*
 "use client"
-import FeedbackForm from "@/components/ClientFeedback";
-import ServerFeedback from "@/components/FeedbackForm";
+//import FeedbackForm from "@/components/ClientFeedback";
+import { FeedbackForm } from "@/components/FeedbackForm";
 import { useState, useEffect } from "react";
+//import cookies from "js-cookie"
+
+
 
 const getEmployeeById = async (id) => {
     try {
@@ -20,18 +24,12 @@ const getEmployeeById = async (id) => {
     }
 };
 
-export default function CreateFeedback({ params }) {
+export default async function CreateFeedback({ params }) {
     const { id } = params;
-    const [employee, setEmployee] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getEmployeeById(id);
-            setEmployee(data.employee || {}); // Ajuste conforme a estrutura de resposta
-        };
-
-        fetchData();
-    }, [id]);
+    //const [giverId, setEmployee] = useState(null);
+    
+    /*
+    //const {employee} = await getEmployeeById(id);
 
     if (!employee) {
         return <div>Loading...</div>; // ou alguma outra mensagem de carregamento
@@ -45,39 +43,22 @@ export default function CreateFeedback({ params }) {
         role,
         active
     } = employee;
-
-    return <ServerFeedback 
-                id={id} 
-
-            />;
+    return <FeedbackForm 
+    id={id}
+    //giver = {giverId} 
+    
+    />;
 }
-
-/*
-"use client";
+*/
 import FeedbackForm from "@/components/FeedbackForm";
-import { useState } from "react";
-
-const getEmployeeById = async(id) => {
-    try {
-        const res = await fetch(`http://localhost:3000/api/employees/${id}`, {
-            cache: "no-store",
-        });
-
-        if(!res.ok) {
-            throw new Error("Failed to fetch employee");
-        }
-
-        return res.json();
-    } catch (error) {
-        console.log(error);
-    }
-};
 
 
 export default async function CreateFeedback({ params }) {
     const { id } = params;
-    const { employeeId } = id;
-    const {employee} = await getEmployeeById(id);
+    //console.log(params);
+    /*
+    //const { employeeId } = id;
+    //const {employee} = await getEmployeeById(id);
     const {
         name, 
         phoneNumber,
@@ -86,10 +67,10 @@ export default async function CreateFeedback({ params }) {
         role,
         active
     } = employee;
-
+    */
     return <FeedbackForm 
-                id={id} 
-                name={name} 
+                idEmployee={id} 
+                //name={name} 
                 />;
 }
-                */
+    

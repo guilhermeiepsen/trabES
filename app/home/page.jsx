@@ -14,9 +14,7 @@ export default function Home() {
           <Link className="text-neutral-100" href={"/hrPolicy"}>
                       POLÍTICA DE RH
           </Link>
-          <Link className="text-neutral-100" href={"/searchEmployee"}>
-                      PESQUISAR FUNCIONÁRIO
-          </Link>
+          
           {console.log(cookies().get('user'))}
         </div>
 }
