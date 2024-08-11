@@ -1,11 +1,19 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export default function FeedbackForm({ id, name }) {
-    const [employeeId] = id;
+    
     const [giverId, setGiverId] = useState('');
+
+    useEffect(() => {
+        // Obtenha o cookie e verifique se ele é válido
+        const sessionCookie = Cookies.get('sessionCookie') || ''; 
+        setGiverId(sessionCookie);
+    }, []);
+
+    const employeeId = id;
     const [rate, setRate] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
@@ -17,13 +25,13 @@ export default function FeedbackForm({ id, name }) {
 
         try {
             const feedback = {
-                employeeId: employeeId, // ID do funcionário
-                giverId: giverId, // ID do avaliador
+                employeeId, // ID do funcionário
+                giverId, // ID do avaliador
                 rate: parseInt(rate, 10), // Avaliação (garantindo que é um número inteiro)
-                message: message, // Mensagem do feedback
+                message, // Mensagem do feedback
             };
 
-            const res = await fetch('http://localhost:3000/api/employees/', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,14 +68,7 @@ export default function FeedbackForm({ id, name }) {
                 </div>
                 <div>
                     <label htmlFor="giverId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <input
-                        id="giverId"
-                        type="number"
-                        value={giverId}
-                        onChange={(e) => setGiverId(e.target.value)}
-                        className="border rounded px-2 py-1 text-black"
-                        required
-                    />
+                    <h2 className="text-lg flex justify-center">{giverId}</h2>
                 </div>
                 <div>
                     <label htmlFor="rate" className="block text-sm font-medium text-neutral-400">Avaliação (0-5)</label>
