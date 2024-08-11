@@ -1,17 +1,25 @@
 import { NextResponse } from 'next/server';
-import cookie from 'cookie';
 
 export async function middleware(req) {
-    const cookies = cookie.parse(req.headers.get('cookie') || '');
-    const session = cookies.session;
+    const session = req.cookies.get('user');
 
-    if (!session) {
-        return NextResponse.redirect(new URL('/login', req.url));
+    if (session) {
+        return NextResponse.next();
+    }else{
+        return NextResponse.redirect(new URL('/', req.url));
     }
-
-    return NextResponse.next();
+    
 }
 
 export const config = {
-    matcher: ['/home', '/addTopic', '/addVacation','/editTopic', '/viewEmployee', '/giveFeedback', '/hrPolicy', '/searchEmployee'],
+    matcher: [
+        '/home', 
+        '/addTopic', 
+        '/addVacation', 
+        '/editTopic', 
+        '/viewEmployee', 
+        '/giveFeedback', 
+        '/hrPolicy', 
+        '/searchEmployee'
+    ],
 };
