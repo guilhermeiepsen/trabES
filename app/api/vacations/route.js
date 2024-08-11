@@ -1,6 +1,5 @@
 import connectMongoDB from "@/libs/mongodb";
 import Vacation from "@/models/vacation";
-import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -21,4 +20,12 @@ export async function DELETE(request) {
     await connectMongoDB();
     await Vacation.findByIdAndDelete(id);
     return NextResponse.json({message: "Vacation Request deleted"}, {status: 200});
+}
+
+export async function PUT(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    console.log(id);
+    await connectMongoDB();
+    await Vacation.findByIdAndUpdate(id, { approved: true });
+    return NextResponse.json({message: "Vacation Request approved"}, {status: 200});
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import RemoveBtn from "../../components/RemoveVacation";
+import ApproveVacation from "@/components/ApproveVacation";
 import { HiCheck, HiInformationCircle } from "react-icons/hi";
 import { cookies } from "next/headers";
 
@@ -60,15 +61,11 @@ export default async function EmployeesList() {
                   <h4 className="text-sm text-neutral-400">
                     Pedindo de <span className="text-neutral-300 font-bold">{t.startDate.toLocaleDateString('pt-BR')} </span> 
                     a <span className="text-neutral-300 font-bold">{t.endDate.toLocaleDateString('pt-BR')}</span>
-                    </h4>
+                  </h4>
+                  <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
                 <div className="flex gap-2">
-                    <Link href={`/viewEmployee/${t._id}`}>
-                        <HiInformationCircle size={24} />
-                    </Link>
-                    <Link href={`/editTopic/${t._id}`}>
-                        <HiCheck size={24} />
-                    </Link>
+                    {!t.approved ? <ApproveVacation id={t._id}/> : 'Aprovada'}
                     <RemoveBtn id={t._id} />
                 </div>
               </div>
