@@ -24,6 +24,7 @@ export default function ViewManagerForm({ id, name, department, role }) {
 
             const data = await res.json();
             router.push('/employeesList');
+            router.refresh();
         } catch (error) {
             console.log(error.message);
         }
