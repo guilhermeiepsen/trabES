@@ -46,15 +46,19 @@ export default async function EmployeesList() {
   })
   console.log(vacations);
 
-  const {value} = cookies().get('user');
-  const {role} = cookies().get('role');
+  let cookie = cookies().get('user');
+  const loggedId = cookie.value;
+  cookie = cookies().get('role');
+  const role = cookie.value;
+
+  console.log(loggedId);
   console.log(role);
   
   return (
         <>
         <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
         <Link className="bg-red-950 hover:bg-red-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
-                Pedir Férias
+                Solicitar Férias
             </Link>
           {vacations.map((t) => (
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
@@ -67,8 +71,8 @@ export default async function EmployeesList() {
                   <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
                 <div className="flex gap-2">
-                    {!t.approved ? <ApproveVacation id={t._id} managerId={value}/> : 'Aprovada por ' + t.managerId.username}
-                    {role < 0 ? <RemoveBtn id={t._id}/> : ''}
+                    {!t.approved ? <ApproveVacation id={t._id} managerId={loggedId}/> : 'Aprovada por ' + t.managerId.username}
+                    {1 < 0 ? <RemoveBtn id={t._id}/> : ''}
                     
                 </div>
               </div>
