@@ -2,8 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const employeeFeedbackSchema = new Schema(
   {
-    employeeId: Number,
-    giverId: Number,
+    employeeId: String,
+    giverId: String,
     rate: Number,
     message: String,
     createdAt: Date,
