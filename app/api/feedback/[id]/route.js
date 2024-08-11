@@ -13,8 +13,8 @@ export async function POST(request, { params }) {
 
     try {
         const newFeedback = new Feedback({
-            employeeId: parseInt(id),
-            giverId: parseInt(giverId),
+            employeeId: id,
+            giverId: giverId,
             rate: parseInt(rate),
             message: message,
             createdAt: new Date(),
