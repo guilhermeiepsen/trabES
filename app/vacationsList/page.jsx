@@ -56,7 +56,7 @@ export default async function EmployeesList() {
           {vacations.map((t) => (
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
                 <div>
-                  <h2 className="font-bold text-2xl">PEDIDO {t._id}</h2>
+                  <h2 className="font-bold text-2xl">{t.employeeId.name}</h2>
                   <h4 className="text-sm text-neutral-400">
                     Pedindo de <span className="text-neutral-300 font-bold">{t.startDate.toLocaleDateString('pt-BR')} </span> 
                     a <span className="text-neutral-300 font-bold">{t.endDate.toLocaleDateString('pt-BR')}</span>
