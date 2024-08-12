@@ -2,9 +2,9 @@
 import Link from 'next/link';
 import { cookies } from "next/headers";
 
-const getFeedbacks = async (employeeId) => {
+const getFeedbacks = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/feedbacks/${employeeId}`, {
+    const res = await fetch(`http://localhost:3000/api/feedback/`, {
         METHOD: 'GET',
         cache: 'no-store',
     });
@@ -22,8 +22,8 @@ const getFeedbacks = async (employeeId) => {
 export default async function FeedbackList() {
 
     const employeeId = cookies().get('user');
-    console.log(employeeId.value);
-    const feedbacks = await getFeedbacks(employeeId.value);
+    const feedbacks = await getFeedbacks();
+    console.log(feedbacks);
 
   return (
     <>
@@ -35,13 +35,14 @@ export default async function FeedbackList() {
 
       {
         feedbacks.map((feedback) => (
+          feedback.employeeId._id == employeeId.value ?
           <div key={feedback._id} className="p-4 bg-neutral-950 my-3 flex-col rounded-lg text-neutral-100">
-            <h2 className="font-bold text-2xl">Feedback de {feedback.giverId.name}</h2>
+            <h2 className="font-bold text-2xl">Feedback de {feedback.giverId.username}</h2>
             <p className="text-sm text-neutral-300">{feedback.message}</p>
-            <p className="text-sm text-neutral-400">Funcionário: {feedback.employeeId?.name || 'Desconhecido'}</p>
+            <p className="text-sm text-neutral-400">Funcionário: {feedback.employeeId.name}</p>
             <p className="text-sm text-neutral-400">Nota: {feedback.rate}</p>
             <p className="text-sm text-neutral-400">Data: {new Date(feedback.createdAt).toLocaleDateString()}</p>
-          </div>
+          </div> : null
         ))
       }
     </>
