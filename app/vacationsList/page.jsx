@@ -81,7 +81,7 @@ export default async function EmployeesList() {
                   </h4>
                   <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-sm">
                     {t.status == 0 && role != 2 && t.employeeId._id != loggedId ? <><ApproveVacation id={t._id} managerId={loggedId} response={1}/> <ApproveVacation id={t._id} managerId={loggedId} response={2}/></> : ''}
                     {t.status == 1 ? 'Aprovada por ' + t.managerId.username : null}
                     {t.status == 2 ? 'Negada por ' + t.managerId.username : null}

@@ -37,9 +37,6 @@ export default async function EmployeesList() {
           <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/register"}>
                 Registrar Funcionário
           </Link>
-          <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/hrPolicy"}>
-                Política de RH
-          </Link>
           <Link className="text-neutral-100" href={"/searchEmployee"}>
                       PESQUISAR FUNCIONÁRIO
           </Link>

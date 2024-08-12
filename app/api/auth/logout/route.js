@@ -7,6 +7,10 @@ export async function GET(req) {
         maxAge: -1,
         path: '/',
     });
+    response.cookies.set('role', '', {
+        maxAge: -1,
+        path: '/',
+    });
 
     return response;
 }

@@ -11,7 +11,7 @@ export async function POST(request) {
 
 export async function GET() {
     await connectMongoDB();
-    const users = await User.find();
+    const users = await User.find({userType: {$ne: 0 }}).sort({userType: 1});
     return NextResponse.json({users});
 }
 
