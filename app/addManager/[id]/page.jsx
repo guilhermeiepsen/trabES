@@ -21,8 +21,9 @@ export default async function ViewEmployee({params}) { //como é um dynamic rout
 
     return <ViewManagerForm
                 id={id}
-                name={user.username} 
+                name={user.name} 
                 department={user.department} 
                 role={user.role}
+                userType={user.userType}
                 />;
 }

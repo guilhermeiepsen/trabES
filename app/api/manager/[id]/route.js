@@ -18,10 +18,11 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
     const { id } = params; // Captura o parâmetro id da URL
+    const newType = request.nextUrl.searchParams.get("type");
     await connectMongoDB();
 
     // Atualiza o papel do usuário para "Gerente"
-    const user = await User.findByIdAndUpdate(id, { userType: 1 }, { new: true });
+    const user = await User.findByIdAndUpdate(id, { userType: newType }, { new: true });
 
     if (!user) {
         return NextResponse.json({ message: 'Employee not found' }, { status: 404 });
