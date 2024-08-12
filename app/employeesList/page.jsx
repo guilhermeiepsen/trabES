@@ -1,5 +1,6 @@
 import Link from "next/link";
 import RemoveBtn from "../../components/RemoveUser";
+import { cookies } from 'next/headers';
 import { HiPencilAlt, HiUser, HiAnnotation, HiExclamation, HiRefresh } from "react-icons/hi";
 
 const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
@@ -20,7 +21,11 @@ const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A 
 }
 
 export default async function EmployeesList() {
-    
+
+  const giverId = cookies().get('user');
+  const role = cookies().get('role');
+  
+  
   const { users } = await getEmployees();
   const rolesDescription = {
     0: 'Administrador',
@@ -51,22 +56,38 @@ export default async function EmployeesList() {
                 </div>
                 <div className="flex gap-2 justify-end mt-4">
                   {rolesDescription[t.userType]}
+                   { role.value != 2 ?
                     <Link href={`/addManager/${t._id}`} title="Trocar Cargo">
                         <HiRefresh size={24}/>
-                    </Link>
+                    </Link>: null
+                    }
+                    { role.value != 2 ?
                     <Link href={`/viewEmployee/${t._id}`} title="Visualizar">
                         <HiUser size={24} />
-                    </Link>
+                    </Link>: null
+                    }
+
+                    { role.value != 2 ?
                     <Link href={`/editTopic/${t._id}`} title="Editar">
                         <HiPencilAlt size={24} />
-                    </Link>
+                    </Link>: null
+                    }
+                    { role.value != 2 ?
                     <Link href={`/giveFeedback/${t._id}`} title="Avaliar">
                         <HiAnnotation size={24}/>
-                    </Link>
+                    </Link>: null
+                    }
+
+                    { role.value == 2 ?
                     <Link href={`/giveMisconduct/${t._id}`} title="Denunciar Conduta">
                         <HiExclamation size={24} color="yellow"/>
-                    </Link>
+                    </Link>: null
+                    }
+                    
+                    { role.value != 2 ?
                     <RemoveBtn id={t._id}/>
+                    : null
+                    }
                 </div>
               </div>
           ))}

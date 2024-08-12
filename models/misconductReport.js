@@ -4,10 +4,10 @@ import mongoose, { Schema } from "mongoose";
 
 const misconductReportSchema = new Schema(
   {
-    employeeId: { type: String, required: true },
-    reporterId: { type: String, required: true },
+    employeeId: {type: Schema.Types.ObjectId, ref: 'User'},
+    reporterId: {type: Schema.Types.ObjectId, ref: 'User'},
     description: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
+    //createdAt: { type: Date, default: Date.now },
   },
   {
     timestamps: true,

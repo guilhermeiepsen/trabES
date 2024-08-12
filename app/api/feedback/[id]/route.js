@@ -28,3 +28,25 @@ export async function POST(request, { params }) {
     }
 
 }
+export async function GET(request, { params }) {
+    const { employeeId } = params; // Obter o employeeId dos parâmetros da URL
+  
+    try {
+      await connectMongoDB();
+  
+      if (!employeeId) {
+        return NextResponse.json({ error: 'Employee ID is required' }, { status: 400 });
+      }
+  
+      // Buscar todos os feedbacks relacionados ao employeeId fornecido
+      const feedbacks = await EmployeeFeedback.find({ employeeId  : {employeeId}})
+        .populate('giverId') // Popula o campo giverId
+        .populate('employeeId') // Popula o campo employeeId
+        .sort({ createdAt: -1 }); // Ordena pelos feedbacks mais recentes
+  
+      return NextResponse.json(feedbacks, { status: 200 });
+    } catch (error) {
+      console.error('Error fetching feedbacks:', error);
+      return NextResponse.json({ error: 'Failed to fetch feedbacks' }, { status: 500 });
+    }
+  }

@@ -19,16 +19,16 @@ export default async function CreateMisconductReport({ params }) {
     } = employee;
     */
 
-    const giverId = cookies().get('user');
+    const {value} = cookies().get('user');
     const role = cookies().get('role');
     
-    console.log(giverId);
-    console.log(role);
+    //console.log(giverId);
+    //console.log(role);
 
     if(role.value == 2) {
         return <MisconductForm
                 idEmployee={id} 
-                giverId = { giverId.value }
+                giverId = {value}
                 //role = {role.value}
                 //name={name} 
                 />;

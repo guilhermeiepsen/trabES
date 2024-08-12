@@ -17,11 +17,11 @@ export default function Home() {
                 ADICIONAR FUNCIONÁRIO
           </Link> : null
           }
-          { role != 2 ?
+          
           <Link className="hover:bg-neutral-800" href={"/employeesList"}>
                       LISTA DE FUNCIONÁRIOS
-          </Link> : null
-          }
+          </Link>
+        
           <Link className="hover:bg-neutral-800" href={"/addVacation"}>
                 PEDIR FÉRIAS
           </Link>
@@ -31,5 +31,18 @@ export default function Home() {
           <Link className="hover:bg-neutral-800" href={"/hrPolicy"}>
                       POLÍTICA DE RH
           </Link>
+          { role == 2 ?
+          <Link className="hover:bg-neutral-800" href={"/feedbackList"}>
+                      FEEDBACKS
+          </Link> : null
+          }
+
+          { role != 2 ?
+          <Link className="hover:bg-neutral-800" href={"/reportList"}>
+                      LISTA DE REPORTS
+          </Link> : null
+          }
+
+
         </div>
 }

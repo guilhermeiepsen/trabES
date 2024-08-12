@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 
 export default function MisconductForm({ idEmployee, giverId }) {
 
-    const employeeId = idEmployee;
-    const reporterId = giverId;
+    const [idLogado] = useState(giverId);
+
+    const [idEm] = useState(idEmployee);
+
+    //const reporterId = giverId;
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
 
@@ -18,12 +21,12 @@ export default function MisconductForm({ idEmployee, giverId }) {
 
         try {
             const report = {
-                employeeId: String(employeeId), // Garantir que seja uma string
-                reporterId: String(reporterId), // Garantir que seja uma string
+                employeeId: idEm,
+                reporterId: idLogado, 
                 description: description
             };
 
-            const res = await fetch('/api/misconduct', { // Endpoint da API
+            const res = await fetch('http://localhost:3000/api/misconduct', { // Endpoint da API
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,9 +35,9 @@ export default function MisconductForm({ idEmployee, giverId }) {
             });
 
             if (res.ok) {
-                setStatus('Relatório de infração enviado com sucesso!');
+                setStatus('Denúncia enviada com sucesso!');
                 // Limpar os campos
-                setReporterId('');
+                //setReporterId('');
                 setDescription('');
             
                 router.refresh(); // Atualiza a página
@@ -49,15 +52,15 @@ export default function MisconductForm({ idEmployee, giverId }) {
 
     return (
         <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
-            <h1 className="text-2xl font-bold mb-4">Enviar Relatório de Infração</h1>
+            <h1 className="text-2xl font-bold mb-4">Enviar Ticket de Denúncia</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
                     <label htmlFor="employeeId" className="block text-sm font-medium text-neutral-400">ID do Funcionário</label>
-                    <h2 className="text-lg flex justify-center">{employeeId}</h2>
+                    <h2 className="text-lg flex justify-center">{idEm}</h2>
                 </div>
                 <div>
                     <label htmlFor="reporterId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <h2 className="text-lg flex justify-center">{reporterId}</h2>
+                    <h2 className="text-lg flex justify-center">{idLogado}</h2>
                 </div>
                 
                 <div>
