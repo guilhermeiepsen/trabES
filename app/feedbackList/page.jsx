@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 const getFeedbacks = async (employeeId) => {
   try {
     const res = await fetch(`http://localhost:3000/api/feedbacks/${employeeId}`, {
-        METHOD: GET,
+        METHOD: 'GET',
         cache: 'no-store',
     });
 
@@ -36,9 +36,8 @@ export default async function FeedbackList() {
       {
         feedbacks.map((feedback) => (
           <div key={feedback._id} className="p-4 bg-neutral-950 my-3 flex-col rounded-lg text-neutral-100">
-            <h2 className="font-bold text-2xl">Feedback {feedback._id}</h2>
+            <h2 className="font-bold text-2xl">Feedback de {feedback.giverId.name}</h2>
             <p className="text-sm text-neutral-300">{feedback.message}</p>
-            <p className="text-sm text-neutral-400">Avaliado por: {feedback.giverId?.name || 'Desconhecido'}</p>
             <p className="text-sm text-neutral-400">Funcionário: {feedback.employeeId?.name || 'Desconhecido'}</p>
             <p className="text-sm text-neutral-400">Nota: {feedback.rate}</p>
             <p className="text-sm text-neutral-400">Data: {new Date(feedback.createdAt).toLocaleDateString()}</p>
