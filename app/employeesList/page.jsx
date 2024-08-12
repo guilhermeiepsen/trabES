@@ -1,3 +1,4 @@
+//app/employeesList
 import Link from "next/link";
 import RemoveBtn from "../../components/RemoveUser";
 import { cookies } from 'next/headers';
@@ -6,7 +7,7 @@ import { HiPencilAlt, HiUser, HiAnnotation, HiExclamation, HiRefresh } from "rea
 
 const getEmployees = async () => { 
   try {
-    const res = await fetch('http://localhost:3000/api/employees/', { //AQUI ESTÁ O ENDPOINT DA FUNÇAO GET.
+    const res = await fetch('http://localhost:3000/api/employees/', { 
       cache: "no-store", 
     });
 
@@ -20,8 +21,27 @@ const getEmployees = async () => {
   }
 }
 
+// const handleSearch = async (e) => {
+//   e.preventDefault()
+//   try {
+//     const result = await fetch(`http://localhost:3000/api/search?name=${name}`, {
+//       method: 'GET',
+//       cache: "no-store"
+//     })
+//     if (!result.ok) {
+//       throw new Error("Failed to fetch users");
+//     }
+
+//     const user = await result.json();
+//     setUsers(user);
+//   } catch (error) {
+//     console.log("Error searching for employee: ", error);
+//   }
+// }
+
 export default async function EmployeesList() {
- 
+  // const [name, setName] = useState("");
+
   const giverId = cookies().get('user');
   const role = cookies().get('role');
 
@@ -31,7 +51,6 @@ export default async function EmployeesList() {
     1: 'Gerente',
     2: 'Funcionário'
   }
-  //console.log(users);
 
   return (
     <>
@@ -42,16 +61,18 @@ export default async function EmployeesList() {
         <Link className="bg-blue-800 hover:bg-blue-700 p-2 rounded-lg text-neutral-200" href={"/register"}>
           Registrar Funcionário
         </Link>
-        {/* <Link className="text-neutral-100" href={"/searchEmployee"}>
+        <Link className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400" href={"/searchEmployee"}>
                         PESQUISAR FUNCIONÁRIO
-            </Link> */}
-        <form className="flex flex-col-4 gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+            </Link>
+        {/* <form className="flex flex-col-4 gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
           <input
             type="text"
+            value={name}
             placeholder="Pesquisar funcionário"
+            onChange={(e) => setName(e.target.value)}
           />
-          <button type="submit" className="hover:bg-neutral-800 font-bold text-white min-w-max">Pesquisar</button>
-        </form>
+          <button onClick={handleSearch} type="submit" className="hover:bg-neutral-800 font-bold text-white min-w-max">Pesquisar</button>
+        </form> */}
       </div>
       {users.map((t) => (
 

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import RemoveUser from '../../components/RemoveUser';
-import { HiPencilAlt, HiUser } from "react-icons/hi";
+import { HiPencilAlt, HiUser, HiAnnotation, HiExclamation, HiRefresh } from "react-icons/hi";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -40,9 +40,8 @@ export default function Home() {
         throw new Error("Failed to fetch users");
       }
 
-      const { user } = await result.json()
-      console.log(user)
-      setUsers(user);
+      const users = await result.json()
+      setUsers(users);
     } catch (error) {
       console.log("Error searching for employee: ", error);
     }
@@ -51,6 +50,7 @@ export default function Home() {
   return (
     <>
       <div className="flex justify-between">
+
         <form className="flex flex-col-4 gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
           <input
             type="text"
@@ -63,9 +63,15 @@ export default function Home() {
       </div>
 
 
-      <div className="flex justify-between items-center px-8 py-4 rounded-lg">
-        <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
+      <div className="flex justify-between py-4">
+        <Link href="/employeesList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+          Voltar
+        </Link>
+        <Link className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400" href={"/addVacation"}>
           Pedir Férias
+        </Link>
+        <Link className="bg-blue-800 hover:bg-blue-700 p-2 rounded-lg text-neutral-200" href={"/register"}>
+          Registrar Funcionário
         </Link>
       </div>
 
@@ -77,11 +83,20 @@ export default function Home() {
           </div>
           <div className="flex gap-2 justify-end mt-4">
             <RemoveUser id={employee._id} />
-            <Link href={`/editTopic/${employee._id}`}>
+            <Link href={`/addManager/${employee._id}`} title="Trocar Cargo">
+              <HiRefresh size={24} />
+            </Link>
+            <Link href={`/viewEmployee/${employee._id}`} title="Visualizar">
+              <HiUser size={24} />
+            </Link>
+            <Link href={`/editTopic/${employee._id}`} title="Editar">
               <HiPencilAlt size={24} />
             </Link>
-            <Link href={`/viewEmployee/${employee._id}`}>
-              <HiUser size={24} />
+            <Link href={`/giveFeedback/${employee._id}`} title="Avaliar">
+              <HiAnnotation size={24} />
+            </Link>
+            <Link href={`/giveMisconduct/${employee._id}`} title="Denunciar Conduta">
+              <HiExclamation size={24} color="yellow" />
             </Link>
           </div>
         </div>
