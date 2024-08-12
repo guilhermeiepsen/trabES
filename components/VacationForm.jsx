@@ -25,7 +25,7 @@ export default function AddVacation({ id }) {
                 startDate: startDate,
                 endDate: endDate,
                 message: message,
-                approved: false,
+                status: 0,
                 employeeId: idLogado,
                 managerId: null,
             };

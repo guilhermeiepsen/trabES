@@ -40,6 +40,11 @@ const getEmployeeById = async(id) => {
 export default async function EmployeesList() {
     
   const { vacations } = await getVacations();
+  var statusDescription = {
+    0: 'Em Análise',
+    1: 'Aprovada',
+    2: 'Não Aprovada'
+  }
   vacations.map(async (t) => {
     t.startDate = new Date(t.startDate);
     t.endDate = new Date(t.endDate);
@@ -71,7 +76,9 @@ export default async function EmployeesList() {
                   <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
                 <div className="flex gap-2">
-                    {!t.approved ? <ApproveVacation id={t._id} managerId={loggedId}/> : 'Aprovada por ' + t.managerId.username}
+                  {console.log(t.status)}
+                    {t.status == 0 ? <ApproveVacation id={t._id} managerId={loggedId}/> : ''}
+                    {t.status == 1 ? 'Aprovada por ' + t.managerId.username : ''}
                     <RemoveBtn id={t._id}/>
                     
                 </div>

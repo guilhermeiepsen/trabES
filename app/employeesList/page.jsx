@@ -22,7 +22,7 @@ const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A 
 export default async function EmployeesList() {
     
   const { users } = await getEmployees();
-  var rolesDescription = {
+  const rolesDescription = {
     0: 'Administrador',
     1: 'Gerente',
     2: 'Funcionário'
