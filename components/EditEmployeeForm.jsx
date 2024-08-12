@@ -31,7 +31,7 @@ export default function EditEmployeeForm({id, name, phoneNumber, corporateEmail,
             }
 
             
-            router.push("/");//"voltar um diretorio"
+            router.push("/home");//"voltar um diretorio"
             router.refresh();
             
 
