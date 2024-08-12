@@ -25,8 +25,9 @@ export async function DELETE(request) {
 export async function PUT(request) {
     const id = request.nextUrl.searchParams.get("id");
     const managerId = request.nextUrl.searchParams.get("manager");
-    console.log(id);
+    const response = request.nextUrl.searchParams.get("res");
+    console.log(managerId);
     await connectMongoDB();
-    await Vacation.findByIdAndUpdate(id, { approved: true, managerId: managerId});
+    await Vacation.findByIdAndUpdate(id, { status: response, managerId: managerId});
     return NextResponse.json({message: "Vacation Request approved"}, {status: 200});
 }
