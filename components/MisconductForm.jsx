@@ -4,11 +4,10 @@
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
 
-export default function MisconductForm({ idEmployee }) {
+export default function MisconductForm({ idEmployee, giverId }) {
 
     const employeeId = idEmployee;
-
-    const [reporterId, setReporterId] = useState('');
+    const reporterId = giverId;
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
 
@@ -58,15 +57,9 @@ export default function MisconductForm({ idEmployee }) {
                 </div>
                 <div>
                     <label htmlFor="reporterId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <input
-                        id="reporterId"
-                        type="text" // Alterado para text
-                        value={reporterId}
-                        onChange={(e) => setReporterId(e.target.value)}
-                        className="border rounded px-2 py-1 text-black"
-                        required
-                    />
+                    <h2 className="text-lg flex justify-center">{reporterId}</h2>
                 </div>
+                
                 <div>
                     <label htmlFor="description" className="block text-sm font-medium text-neutral-400">Descrição</label>
                     <textarea

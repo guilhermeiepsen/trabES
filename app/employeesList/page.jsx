@@ -64,7 +64,7 @@ export default async function EmployeesList() {
                     <Link href={`/addManager/${t._id}`} title="Promover a Gerente">
                         <HiOutlineStar size={24}/>
                     </Link>
-                    <Link href={`/giveMisconduct/${t._id}`}>
+                    <Link href={`/giveMisconduct/${t._id}`} title="Reportar">
                         <HiExclamation size={24}/>
                     </Link>
                 </div>

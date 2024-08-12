@@ -1,16 +1,21 @@
 import FeedbackForm from "@/components/FeedbackForm";
 import { cookies } from 'next/headers';
+import EmployeesList from "@/app/employeesList/page";
 
 
 export default async function CreateFeedback({ params }) {
     const { id } = params;
-    const {value} = cookies().get('user');
-    const giverId = value;
+    const giverId = cookies().get('user');
+    const role = cookies().get('role');
 
-
-    return <FeedbackForm 
-                id={id} 
-                giverId={giverId} 
-                />;
+    if(role.value == 1) {
+        return <FeedbackForm 
+                    id={id} 
+                    giverId={giverId.value} 
+                    />;
+    }
+    else {
+        return <EmployeesList/>
+    }
 }
     
