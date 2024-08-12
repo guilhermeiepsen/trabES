@@ -41,7 +41,7 @@ export default async function ReportsList() {
   const {reports} = await getReports();
     //console.log(reports[0].)
 
-    console.log(reports[0].reporterId)
+    //console.log(reports[0].reporterId)
   return (
     <>
       <div className="flex justify-between mb-4">

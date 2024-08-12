@@ -56,7 +56,7 @@ export default async function EmployeesList() {
                 </div>
                 <div className="flex gap-2 justify-end mt-4">
                   {rolesDescription[t.userType]}
-                   { role.value != 2 ?
+                   { role.value == 0 ?
                     <Link href={`/addManager/${t._id}`} title="Trocar Cargo">
                         <HiRefresh size={24}/>
                     </Link>: null
