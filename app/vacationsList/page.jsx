@@ -66,7 +66,9 @@ export default async function EmployeesList() {
                 Solicitar Férias
             </Link>
           {vacations.map((t) => (
+            t.employeeId._id == loggedId || role != 2 ?
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
+                
                 <div>
                   <h2 className="font-bold text-2xl">{t.employeeId.name}</h2>
                   <h4 className="text-sm text-neutral-400">
@@ -80,11 +82,9 @@ export default async function EmployeesList() {
                     {t.status == 1 ? 'Aprovada por ' + t.managerId.username : ''}
                     {t.status == 2 ? 'Negada por ' + t.managerId.username : ''}
                     <RemoveBtn id={t._id}/>
-                    
                 </div>
-              </div>
-              
-          ))}
+              </div> : null
+            ))}
         </>
       );
 }
