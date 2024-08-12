@@ -45,48 +45,45 @@ export default function FeedbackForm({ id, giverId }) {
     
 
     return (
-        <div className="flex flex-col gap-2 text-neutral-100 items-center px-4 tracking-wide">
-            <h1 className="text-2xl font-bold mb-4">Enviar Feedback</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+            <h1 className="text-2xl font-bold">Enviar Feedback</h1>
+                {/* <div>
                     <label htmlFor="employeeId" className="block text-sm font-medium text-neutral-400">ID do Funcionário</label>
                     <h2 className="text-lg flex justify-center">{employeeId}</h2>
                 </div>
                 <div>
                     <label htmlFor="giverId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
                     <h2 className="text-lg flex justify-center">{userId}</h2>
-                </div>
-                <div>
-                    <label htmlFor="rate" className="block text-sm font-medium text-neutral-400">Avaliação (0-5)</label>
+                </div> */}
+                <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+                    Avaliação (0-10)
                     <input
                         id="rate"
-                        type="number"
+                        onChange={(e) => setRate(e.target.value)} //ONCHANGE -- QUANDO MUDA O INPUT PEGA A STRING E BOTA NA VARIAVEL "e"
                         value={rate}
-                        onChange={(e) => setRate(e.target.value)}
-                        className="border rounded px-2 py-1 text-black"
+                        type = "number"
                         min="0"
                         max="10"
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-neutral-400">Mensagem</label>
-                    <textarea
-                        id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="border rounded px-2 py-1 text-black"
-                        required
-                    />
-                </div>
+                </label>
+                <textarea
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    type = "text"
+                    placeholder="Messagem"
+                    className="resize-none"
+                    maxLength={140}
+                    required
+                />
                 <button
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                    Enviar Feedback
+                    Enviar
                 </button>
+                {status && <p className="mt-4 text-lg">{status}</p>}
             </form>
-            {status && <p className="mt-4 text-lg">{status}</p>}
-        </div>
+            
     );
 }

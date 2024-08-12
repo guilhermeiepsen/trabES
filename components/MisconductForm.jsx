@@ -51,36 +51,34 @@ export default function MisconductForm({ idEmployee, giverId }) {
     };
 
     return (
-        <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
-            <h1 className="text-2xl font-bold mb-4">Enviar Ticket de Denúncia</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+            <h1 className="text-2xl font-bold">Enviar Ticket de Denúncia</h1>
+                {/* <div>
                     <label htmlFor="employeeId" className="block text-sm font-medium text-neutral-400">ID do Funcionário</label>
                     <h2 className="text-lg flex justify-center">{idEm}</h2>
                 </div>
                 <div>
                     <label htmlFor="reporterId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
                     <h2 className="text-lg flex justify-center">{idLogado}</h2>
-                </div>
-                
-                <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-neutral-400">Descrição</label>
+                </div> */}
+                <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+                    Descrição
                     <textarea
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="border rounded px-2 py-1 text-black"
-                        required
-                    />
-                </div>
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                    type = "text"
+                    className="resize-none"
+                    maxLength={140}
+                    required
+                />
+                </label>
                 <button
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                    Enviar Relatório
+                    Enviar
                 </button>
-            </form>
-            {status && <p className="mt-4 text-lg">{status}</p>}
-        </div>
+                {status && <p className="mt-4 text-lg">{status}</p>}
+            </form> 
     );
 }

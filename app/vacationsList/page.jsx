@@ -49,15 +49,15 @@ export default async function EmployeesList() {
     t.startDate = new Date(t.startDate);
     t.endDate = new Date(t.endDate);
   })
-  console.log(vacations);
+  // console.log(vacations);
 
   let cookie = cookies().get('user');
   const loggedId = cookie.value;
   cookie = cookies().get('role');
   const role = cookie.value;
 
-  console.log(loggedId);
-  console.log(role);
+  // console.log(loggedId);
+  // console.log(role);
   
   return (
         <>
