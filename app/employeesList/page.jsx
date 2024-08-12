@@ -1,6 +1,6 @@
 import Link from "next/link";
 import RemoveBtn from "../../components/RemoveUser";
-import { HiPencilAlt, HiUser, HiAnnotation, HiOutlineStar, HiExclamation } from "react-icons/hi";
+import { HiPencilAlt, HiUser, HiAnnotation, HiExclamation, HiRefresh } from "react-icons/hi";
 
 const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A FUNÇÃO GET DE api/topics/route.js FAZ ISSO.
   try {
@@ -31,42 +31,42 @@ export default async function EmployeesList() {
   
   return (
         <>
-          <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
-                    Voltar
-          </Link>
-          <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/register"}>
-                Registrar Funcionário
-          </Link>
-          <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/hrPolicy"}>
-                Política de RH
-          </Link>
-          <Link className="text-neutral-100" href={"/searchEmployee"}>
-                      PESQUISAR FUNCIONÁRIO
-          </Link>
+          <div className="flex justify-between">
+            <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+                      Voltar
+            </Link>
+            <Link className="bg-blue-800 hover:bg-blue-700 p-2 rounded-lg text-neutral-200" href={"/register"}>
+                  Registrar Funcionário
+            </Link>
+            {/* <Link className="text-neutral-100" href={"/searchEmployee"}>
+                        PESQUISAR FUNCIONÁRIO
+            </Link> */}
+          </div>
           {users.map((t) => (
         
-              <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
+              <div className="p-4 bg-neutral-950 my-3 flex-col justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
                 <div>
                   <h2 className="font-bold text-2xl">{t.name}</h2>
                   <h4 className="text-sm text-neutral-300">{t.role} <span className="text-neutral-400">em</span> {t.department}</h4>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 justify-end mt-4">
                   {rolesDescription[t.userType]}
-                    <Link href={`/editTopic/${t._id}`} title="Editar">
-                        <HiPencilAlt size={24} />
+                    <Link href={`/addManager/${t._id}`} title="Trocar Cargo">
+                        <HiRefresh size={24}/>
                     </Link>
                     <Link href={`/viewEmployee/${t._id}`} title="Visualizar">
                         <HiUser size={24} />
                     </Link>
+                    <Link href={`/editTopic/${t._id}`} title="Editar">
+                        <HiPencilAlt size={24} />
+                    </Link>
                     <Link href={`/giveFeedback/${t._id}`} title="Avaliar">
                         <HiAnnotation size={24}/>
                     </Link>
-                    <Link href={`/addManager/${t._id}`} title="Promover a Gerente">
-                        <HiOutlineStar size={24}/>
+                    <Link href={`/giveMisconduct/${t._id}`} title="Denunciar Conduta">
+                        <HiExclamation size={24} color="yellow"/>
                     </Link>
-                    <Link href={`/giveMisconduct/${t._id}`} title="Reportar">
-                        <HiExclamation size={24}/>
-                    </Link>
+                    <RemoveBtn id={t._id}/>
                 </div>
               </div>
           ))}
