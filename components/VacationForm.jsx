@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function AddVacation({ id }) {
 
@@ -25,7 +26,7 @@ export default function AddVacation({ id }) {
                 startDate: startDate,
                 endDate: endDate,
                 message: message,
-                approved: false,
+                status: 0,
                 employeeId: idLogado,
                 managerId: null,
             };
@@ -51,6 +52,9 @@ export default function AddVacation({ id }) {
 
     return <form onSubmit={handleSubmit} //QUANDO O BUTTON DE SUBMIT EH CLICKADO CHAMA A FUNÇAO. SE OLHAR O BUTTON ELE TEM Q SER TYPE="SUBMIT"
             className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+                <Link href="/vacationsList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+                    Voltar
+                </Link>
                 <label className="flex flex-col gap-2 *:bg-black *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
                     Data de Início: 
                     <input

@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const AddUser = () => {
     const [username, setUsername] = useState('');
@@ -52,6 +53,9 @@ const AddUser = () => {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
+            <Link href="/employeesList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+                    Voltar
+                </Link>
             <input
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}

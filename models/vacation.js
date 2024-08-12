@@ -4,7 +4,7 @@ const vacationSchema = new Schema(
   {
     employeeId: {type: Schema.Types.ObjectId, ref: 'User'},
     managerId: {type: Schema.Types.ObjectId, ref: 'User'},
-    approved: Boolean,
+    status: Number,
     startDate: Date,
     endDate: Date,
     message: String

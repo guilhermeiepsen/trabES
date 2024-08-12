@@ -3,9 +3,9 @@ import Vacation from "@/models/vacation";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { startDate, endDate, message, employeeId, managerId, approved } = await request.json();
+    const { startDate, endDate, message, employeeId, managerId, status } = await request.json();
     await connectMongoDB();
-    await Vacation.create({ startDate, endDate, message, employeeId, managerId, approved });
+    await Vacation.create({ startDate, endDate, message, employeeId, managerId, status });
     return NextResponse.json({ message: "Vacation Request Registered" }, { status: 201 });
 }
 
@@ -25,8 +25,9 @@ export async function DELETE(request) {
 export async function PUT(request) {
     const id = request.nextUrl.searchParams.get("id");
     const managerId = request.nextUrl.searchParams.get("manager");
-    console.log(id);
+    const response = request.nextUrl.searchParams.get("res");
+    console.log(managerId);
     await connectMongoDB();
-    await Vacation.findByIdAndUpdate(id, { approved: true, managerId: managerId});
+    await Vacation.findByIdAndUpdate(id, { status: response, managerId: managerId});
     return NextResponse.json({message: "Vacation Request approved"}, {status: 200});
 }

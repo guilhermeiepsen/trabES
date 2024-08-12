@@ -2,8 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const employeeFeedbackSchema = new Schema(
   {
-    employeeId: String,
-    giverId: String,
+    employeeId: {type: Schema.Types.ObjectId, ref: 'User'},
+    giverId: {type: Schema.Types.ObjectId, ref: 'User'},
     rate: Number,
     message: String,
     createdAt: Date,

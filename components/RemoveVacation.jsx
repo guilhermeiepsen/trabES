@@ -19,7 +19,7 @@ export default function RemoveVacation({ id }) {
     }
 
     return (
-    <button onClick={removeTopic} className="text-red-400">
+    <button onClick={removeTopic} className="text-red-400" title="Excluir Pedido">
         <HiTrash size={24} />
     </button>
     );

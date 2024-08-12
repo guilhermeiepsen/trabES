@@ -22,7 +22,7 @@ const getEmployees = async() => { //COMO PEGAR OS TOPICOS? DO BANCO DE DADOS. A 
 export default async function EmployeesList() {
     
   const { users } = await getEmployees();
-  var rolesDescription = {
+  const rolesDescription = {
     0: 'Administrador',
     1: 'Gerente',
     2: 'Funcionário'
@@ -31,6 +31,9 @@ export default async function EmployeesList() {
   
   return (
         <>
+          <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+                    Voltar
+          </Link>
           <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/register"}>
                 Registrar Funcionário
           </Link>
