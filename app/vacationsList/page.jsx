@@ -72,7 +72,7 @@ export default async function EmployeesList() {
                 </div>
                 <div className="flex gap-2">
                     {!t.approved ? <ApproveVacation id={t._id} managerId={loggedId}/> : 'Aprovada por ' + t.managerId.username}
-                    {1 < 0 ? <RemoveBtn id={t._id}/> : ''}
+                    <RemoveBtn id={t._id}/>
                     
                 </div>
               </div>
