@@ -22,7 +22,7 @@ export default async function EditEmployee({ params }) { //como é um dynamic ro
     const {
         name, 
         phoneNumber,
-        corporateEmail,
+        email,
         department,
         role,
         active
@@ -32,7 +32,7 @@ export default async function EditEmployee({ params }) { //como é um dynamic ro
                 id={id} 
                 name={name} 
                 phoneNumber={phoneNumber} 
-                corporateEmail={corporateEmail} 
+                corporateEmail={email} 
                 department={department} 
                 role={role}
                 active={active}

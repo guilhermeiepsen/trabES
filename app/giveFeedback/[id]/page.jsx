@@ -5,13 +5,13 @@ import EmployeesList from "@/app/employeesList/page";
 
 export default async function CreateFeedback({ params }) {
     const { id } = params;
-    const {giverId} = cookies().get('user');
+    const {value} = cookies().get('user');
     const role = cookies().get('role');
 
     if(role.value == 1) {
         return <FeedbackForm 
                     id={id} 
-                    giverId={giverId} 
+                    giverId={value} 
                     />;
     }
     else {
