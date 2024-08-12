@@ -31,6 +31,9 @@ export default async function EmployeesList() {
   
   return (
         <>
+          <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+                    Voltar
+          </Link>
           <Link className="bg-neutral-950 hover:bg-neutral-800 p-2 rounded-lg text-neutral-200" href={"/register"}>
                 Registrar Funcionário
           </Link>

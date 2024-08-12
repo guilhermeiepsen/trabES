@@ -61,10 +61,14 @@ export default async function EmployeesList() {
   
   return (
         <>
-        <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
-        <Link className="bg-red-950 hover:bg-red-800 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
+          <div className="flex justify-between">
+            <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center text-neutral-400">
+              Voltar
+            </Link>
+            <Link className="bg-blue-800 hover:bg-blue-700 p-2 rounded-lg text-neutral-200" href={"/addVacation"}>
                 Solicitar Férias
             </Link>
+          </div>
           {vacations.map((t) => (
             t.employeeId._id == loggedId || role != 2 ?
               <div className="p-4 bg-neutral-950 my-3 flex justify-between items-center gap-5 items-start rounded-lg  text-neutral-100 tracking-wide">
@@ -78,10 +82,10 @@ export default async function EmployeesList() {
                   <h4 className="text-xs text-neutral-300">{t.message}</h4>
                 </div>
                 <div className="flex gap-2">
-                    {t.status == 0 && role != 2 ? <><ApproveVacation id={t._id} managerId={loggedId} response={1}/> <ApproveVacation id={t._id} managerId={loggedId} response={2}/></> : ''}
-                    {t.status == 1 && role != 2 ? 'Aprovada por ' + t.managerId.username : null}
+                    {t.status == 0 && role != 2 && t.employeeId._id != loggedId ? <><ApproveVacation id={t._id} managerId={loggedId} response={1}/> <ApproveVacation id={t._id} managerId={loggedId} response={2}/></> : ''}
+                    {t.status == 1 ? 'Aprovada por ' + t.managerId.username : null}
                     {t.status == 2 ? 'Negada por ' + t.managerId.username : null}
-                    {role == 0 && t.status == 0 ? <RemoveBtn id={t._id}/> : null}
+                    {role == 0 || (t.employeeId._id == loggedId && t.status == 0) ? <RemoveBtn id={t._id}/> : null}
                 </div>
               </div> : null
             ))}
