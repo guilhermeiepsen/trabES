@@ -28,7 +28,7 @@ export async function POST(request, { params }) {
     }
 
 }
-export async function GET(request, { params }) {
+export async function GET({ params }) {
     const { employeeId } = params; // Obter o employeeId dos parâmetros da URL
   
     try {
@@ -39,10 +39,7 @@ export async function GET(request, { params }) {
       }
   
       // Buscar todos os feedbacks relacionados ao employeeId fornecido
-      const feedbacks = await EmployeeFeedback.find({ employeeId  : {employeeId}})
-        .populate('giverId') // Popula o campo giverId
-        .populate('employeeId') // Popula o campo employeeId
-        .sort({ createdAt: -1 }); // Ordena pelos feedbacks mais recentes
+      const feedbacks = await EmployeeFeedback.find({ employeeId }).populate('giverId').populate('employeeId').sort({ createdAt: -1 });
   
       return NextResponse.json(feedbacks, { status: 200 });
     } catch (error) {

@@ -54,10 +54,10 @@ export default async function ReportsList() {
         reports.map((t) => (
             //getEmployeeById(t.reporterId);
           <div key={t._id} className="p-4 bg-neutral-950 my-3 flex-col rounded-lg text-neutral-100">
-            <h2 className="font-bold text-2xl">Relatório {t._id}</h2>
+            <h2 className="font-bold text-2xl">Denúncia de {t.reporterId.name}</h2>
             <p className="text-sm text-neutral-300">{t.description}</p>
             <p className="text-sm text-neutral-400">Denunciado por: {t.reporterId.name}</p>
-            <p className="text-sm text-neutral-400">Funcionário: {t.employeeId}</p>
+            <p className="text-sm text-neutral-400">Funcionário denunciado: {t.employeeId.name}</p>
             <p className="text-sm text-neutral-400">Data: {new Date(t.createdAt).toLocaleDateString()}</p>
           </div>
         ))
