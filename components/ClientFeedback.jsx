@@ -1,28 +1,44 @@
 "use client";
+//import { useEffect } from 'react';
+//import cookie from "js-cookie"
+//import cookie from "cookie";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function FeedbackForm({ id, giverId }) {
-    const [userId] = useState(giverId);
-    const [employeeId] = useState(id);
+export default function FeedbackForm({ giver, id }) {
+    
+    const [giverId] = giver;
+    /*
+    useEffect(() => {
+        // Obtenha o cookie e verifique se ele é válido
+        const cookies = cookie.parse(document.cookie);
+        const sessionCookie = cookies.sessionCookie || ''; // Ajuste conforme necessário
 
+        console.log(sessionCookie);
+        setGiverId(sessionCookie);
+    }, []);
+
+    */
+    
+    const [employeeId] = id;
     const [rate, setRate] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
 
     const router = useRouter();
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const feedback = {
-            giverId: userId,
-            rate,
-            message
-        };
-
         try {
-            const res = await fetch(`/api/feedback/${id}`, {
+            const feedback = {
+                employeeId: employeeId, // ID do funcionário
+                giverId: giverId, // ID do avaliador
+                rate: parseInt(rate, 10), // Avaliação (garantindo que é um número inteiro)
+                message: message, // Mensagem do feedback
+            };
+
+            const res = await fetch('http://localhost:3000/api/employees/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,22 +46,27 @@ export default function FeedbackForm({ id, giverId }) {
                 body: JSON.stringify(feedback),
             });
 
-            console.log(res);
             if (res.ok) {
                 setStatus('Feedback enviado com sucesso!');
+                // Limpar os campos
+                setGiverId('');
                 setRate('');
                 setMessage('');
+                
+                // Redirecionar para a página inicial ou outra página
+                router.push('/');
+                router.refresh(); // Atualiza a página
             } else {
-                setStatus('Erro ao enviar feedback.');
+                throw new Error('Erro ao enviar feedback.');
             }
         } catch (error) {
+            console.error(error);
             setStatus('Erro ao enviar feedback.');
         }
     };
-    
 
     return (
-        <div className="flex flex-col gap-2 text-neutral-100 items-center px-4 tracking-wide">
+        <div className="flex flex-col gap-2 text-neutral-100 *:items-center *:px-4 *:tracking-wide">
             <h1 className="text-2xl font-bold mb-4">Enviar Feedback</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
@@ -53,8 +74,8 @@ export default function FeedbackForm({ id, giverId }) {
                     <h2 className="text-lg flex justify-center">{employeeId}</h2>
                 </div>
                 <div>
-                    <label htmlFor="giverId" className="block text-sm font-medium text-neutral-400">Seu ID</label>
-                    <h2 className="text-lg flex justify-center">{userId}</h2>
+                    <label htmlFor="employeeId" className="block text-sm font-medium text-neutral-400">Seu</label>
+                    <h2 className="text-lg flex justify-center">{giverId}</h2>
                 </div>
                 <div>
                     <label htmlFor="rate" className="block text-sm font-medium text-neutral-400">Avaliação (0-5)</label>
@@ -65,7 +86,7 @@ export default function FeedbackForm({ id, giverId }) {
                         onChange={(e) => setRate(e.target.value)}
                         className="border rounded px-2 py-1 text-black"
                         min="0"
-                        max="10"
+                        max="5"
                         required
                     />
                 </div>

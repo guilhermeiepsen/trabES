@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import RemoveBtn from '../../components/RemoveBtn'; // Se você estiver usando o botão de remoção
+import RemoveUser from '../../components/RemoveUser'; // Se você estiver usando o botão de remoção
 import { HiPencilAlt, HiUser } from "react-icons/hi";
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
                 <h4 className="text-sm text-neutral-300">{employee.role} <span className="text-neutral-400">em</span> {employee.department}</h4>
               </div>
               <div className="flex gap-2">
-                <RemoveBtn id={employee._id} />
+                <RemoveUser id={employee._id} />
                 <Link href={`/editTopic/${employee._id}`}>
                   <HiPencilAlt size={24} />
                 </Link>
