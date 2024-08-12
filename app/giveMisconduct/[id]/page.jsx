@@ -1,4 +1,5 @@
 import MisconductForm from "@/components/MisconductForm";
+import { cookies } from "next/headers";
 
 
 export default async function CreateMisconductReport({ params }) {
@@ -16,8 +17,19 @@ export default async function CreateMisconductReport({ params }) {
         active
     } = employee;
     */
+
+    const giverId = cookies().get('user');
+    const role = cookies().get('role');
+    console.log(giverId);
+    console.log(role);
+
+
+
+
     return <MisconductForm
                 idEmployee={id} 
+                //giverId = { giverId.value }
+                //role = {role.value}
                 //name={name} 
                 />;
 }
