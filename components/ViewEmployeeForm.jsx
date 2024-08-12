@@ -53,7 +53,7 @@ export default function ViewEmployeeForm({id, name, dateOfBirth, cpf, phoneNumbe
                 <p className="text-neutral-400 text-sm">Situação: </p>
                 <h2 className={active ? "text-lg text-green-300" : "text-lg"}>{active ? 'Ativo' : 'Inativo'}</h2>
             </div>
-            <Link href="/employeesList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
+            <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-center">Voltar</Link>
         </div>
     );
 }

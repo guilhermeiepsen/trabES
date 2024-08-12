@@ -49,7 +49,7 @@ export default async function EmployeesList() {
                   <h2 className="font-bold text-2xl">{t.name}</h2>
                   <h4 className="text-sm text-neutral-300">{t.role} <span className="text-neutral-400">em</span> {t.department}</h4>
                 </div>
-                <div className="flex gap-2 justify-end">
+                <div className="flex gap-2 justify-end mt-4">
                   {rolesDescription[t.userType]}
                     <Link href={`/addManager/${t._id}`} title="Trocar Cargo">
                         <HiRefresh size={24}/>
