@@ -58,7 +58,7 @@ export default function SearchEmployee({ id, role }) {
   return (
     <>
       <div className="flex justify-between py-4">
-        <Link href="/employeesList" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
+        <Link href="/home" className="bg-neutral-950 hover:bg-neutral-800 rounded-lg px-4 py-2 self-left max-w-fit text-neutral-400">
           Voltar
         </Link>
         <form onSubmit={handleSearch} className="flex flex-col-4 gap-2 *:bg-neutral-950 *:px-4 *:py-2 *:rounded-lg *:text-neutral-200">
