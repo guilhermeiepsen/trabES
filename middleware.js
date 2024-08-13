@@ -21,6 +21,12 @@ export const config = {
         '/viewEmployee', 
         '/giveFeedback', 
         '/hrPolicy', 
-        '/searchEmployee'
+        '/searchEmployee',
+        '/addManager',
+        '/approveVacation',
+        '/feedbackList',
+        '/giveMisconduct',
+        '/reportList',
+        '/vacationsList'
     ],
 };
