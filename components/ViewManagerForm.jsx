@@ -29,7 +29,7 @@ export default function ViewManagerForm({ id, name, department, role, userType }
             }
 
             const data = await res.json();
-            router.push('/employeesList');
+            router.push('/searchEmployee');
             router.refresh();
         } catch (error) {
             console.log(error.message);

@@ -10,7 +10,7 @@ export async function GET(req) {
 
     // Corrigindo a sintaxe da consulta MongoDB
     const user = await User.find({
-      username: { $regex: name, $options: 'i' },
+      name: { $regex: name, $options: 'i' },
       userType: { $ne: 0 } // Exclusão de tipo de usuário com valor 0
     });
 
