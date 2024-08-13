@@ -18,7 +18,7 @@ export default function Home() {
           </Link> : null
           }
           
-          <Link className="hover:bg-neutral-800" href={"/employeesList"}>
+          <Link className="hover:bg-neutral-800" href={"/searchEmployee"}>
                       LISTA DE FUNCIONÁRIOS
           </Link>
         
